@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Praful ❤️ Nisha | Wedding Invitation</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #4b0f1f;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top, #8d1838, #3b0716);
+            z-index: -2;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-top: 20px;
+            color: #ffd700;
+        }
+
+        .hero p {
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            margin-top: 25px;
+            background: #ffd700;
+            color: #4b0f1f;
+            border: none;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #ffea70;
+        }
+
+        .section {
+            padding: 80px 10%;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s ease;
+        }
+
+        .section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 25px;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, .08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            transition: .4s;
+            border: 2px solid rgba(255, 257, 0, 0.2);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            border-color: #ffd700;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .box {
+            background: #ffd700;
+            color: #4b0f1f;
+            padding: 20px;
+            border-radius: 20px;
+            min-width: 110px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .box span {
+            font-size: 2rem;
+            display: block;
+        }
+
+        .contact {
+            text-align: center;
+            line-height: 2;
+        }
+
+        footer {
+            padding: 50px;
+            text-align: center;
+            font-size: 1.1rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .map-btn {
+            display: inline-block;
+            margin-top: 15px;
+            background: #ffd700;
+            padding: 12px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: #4b0f1f;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .map-btn:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
+        .rsvp input,
+        .rsvp select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            font-family: inherit;
+        }
+
+        .rsvp button {
+            background: #ffd700;
+            color: #4b0f1f;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .rsvp button:hover {
+            background: #fff;
+        }
+
+        .petals {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .petal {
+            position: absolute;
+            top: -50px;
+            font-size: 20px;
+            user-select: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg) translateX(50px);
+                opacity: 0.3;
+            }
+        }
+
+        @media(max-width:768px){
+            .hero h1{
+                font-size: 2.5rem;
+            }
+            .hero h2{
+                font-size: 1.5rem;
+            }
+            .section {
+                padding: 60px 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="petals" id="petals"></div>
+
+    <audio id="bgMusic" loop>
+        <source src="mere-piya-ghar-aavenge.mp3" type="audio/mpeg">
+    </audio>
+
+    <section class="hero">
+        <h2>॥ श्री गणेशाय नमः ॥</h2>
+        <h1>Praful ❤️ Nisha</h1>
+        <p>१२ वर्षांच्या सुंदर सहप्रवासानंतर...</p>
+        <p>२९ जानेवारी २०२७</p>
+        <button class="btn" id="musicBtn" onclick="playMusic()">🎵 Music Start</button>
+    </section>
+
+    <section class="section">
+        <h2 class="title">⏳ Countdown</h2>
+        <div class="countdown">
+            <div class="box"><span id="days">0</span>Days</div>
+            <div class="box"><span id="hours">0</span>Hours</div>
+            <div class="box"><span id="mins">0</span>Minutes</div>
+            <div class="box"><span id="secs">0</span>Seconds</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="title">👰🤵 आमंत्रण</h2>
+        <div class="card">
+            <h3>चि. प्रफुल पंकज वाघ</h3>
+            <h3>❤️</h3>
+            <h3>चि. सौ. का. निशा अनिल थोरात</h3>
+            <br>
+            <p>आपण सहकुटुंब उपस्थित राहून वधू-वरांना शुभाशीर्वाद द्यावेत.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="title">👨‍👩‍👧‍👦 आई-वडील</h2>
+        <div class="card">
+            <p><b>वर पक्ष</b></p>
+            <p>Pankaj Prabhakarsheth Wagh</p>
+            <p>Rekha Pankajsheth Wagh</p>
+            <br>
+            <p><b>वधू पक्ष</b></p>
+            <p>Anil Ramdas Thorat</p>
+            <p>Rupali Anil Thorat</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="title">❤️ आमची प्रेमकथा</h2>
+        <div class="card">
+            १२ वर्षांच्या सुंदर नात्यानंतर आज आम्ही आयुष्यभरासाठी एकमेकांचे होणार आहोत.
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="title">🌼 हळद समारंभ</h2>
+        <div class="card">
+            <p>दिनांक : २८ जानेवारी २०२७</p>
+            <p>वेळ : सायं. ५:००</p>
+            <br>
+            <p>Adi Aventura Society, Kiwale, Ravet</p>
+            <a class="map-btn" href="https://www.google.com/maps/place/Adi+Aventura/" target="_blank">
+                📍 View Location
+            </a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="title">💍 विवाह सोहळा</h2>
+        <div class="card">
+            <p>वरमाला : १२:०० PM</p>
+            <p>मुहूर्त : १२:१८ PM</p>
+            <br>
+            <p>Laxmi Mangal Karyalay, Alandi</p>
+            <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=Laxmi%20Mangal%20Karyalay" target="_blank">
+                📍 View Location
+            </a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="title">📸 Gallery</h2>
+        <div class="gallery">
+            <img src="PHOTO1.jpg" alt="Moment 1">
+            <img src="PHOTO2.jpg" alt="Moment 2">
+            <img src="PHOTO3.jpg" alt="Moment 3">
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="title">💌 RSVP</h2>
+        <div class="card rsvp">
+            <input type="text" placeholder="Full Name" required>
+            <input type="tel" placeholder="Mobile Number" required>
+            <select>
+                <option>मी येणार आहे</option>
+                <option>मी येऊ शकणार नाही</option>
+            </select>
+            <input type="number" placeholder="किती सदस्य येणार" min="0">
+            <button type="button" onclick="alert('तुमचा प्रतिसाद नोंदवला गेला आहे! धन्यवाद.')">Submit</button>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="title">📞 Contact</h2>
+        <div class="card contact">
+            <p><b>Ankit Wagh</b></p>
+            <p>9307551619</p>
+            <br>
+            <p><b>Pankaj Wagh</b></p>
+            <p>9307038926</p>
+        </div>
+    </section>
+
+    <footer>
+        🙏 आपल्या उपस्थितीने आमचा आनंद द्विगुणित होईल 🙏
+    </footer>
+
+    <script>
+        // Audio Toggle Feature
+        function playMusic(){
+            const audio = document.getElementById("bgMusic");
+            const btn = document.getElementById("musicBtn");
+            if (audio.paused) {
+                audio.play().then(() => {
+                    btn.innerHTML = "🎵 Music Playing";
+                }).catch(err => console.log("Audio play blocked: ", err));
+            } else {
+                audio.pause();
+                btn.innerHTML = "🎵 Music Start";
+            }
+        }
+
+        // Optimized Target Timer Code
+        const targetDate = new Date("Jan 29, 2027 12:18:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById("days").innerHTML = "0";
+                document.getElementById("hours").innerHTML = "0";
+                document.getElementById("mins").innerHTML = "0";
+                document.getElementById("secs").innerHTML = "0";
+                return;
+            }
+
+            document.getElementById("days").innerHTML = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerHTML = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("mins").innerHTML = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("secs").innerHTML = Math.floor((diff % (1000 * 60)) / 1000);
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Run immediately on load
+
+        // Scroll Animation Handler
+        const sections = document.querySelectorAll(".section");
+        function revealSections(){
+            sections.forEach(sec => {
+                const pos = sec.getBoundingClientRect().top;
+                if (pos < window.innerHeight - 100) {
+                    sec.classList.add("show");
+                }
+            });
+        }
+        window.addEventListener("scroll", revealSections);
+        window.addEventListener("DOMContentLoaded", revealSections); // Initial check
+
+        // Flower Petals Generator
+        const petalsContainer = document.getElementById("petals");
+        const flowerEmojis = ["🌸", "🌹", "🌼"];
+        
+        for (let i = 0; i < 35; i++) {
+            let petal = document.createElement("div");
+            petal.classList.add("petal");
+            petal.innerHTML = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+            petal.style.left = Math.random() * 100 + "%";
+            petal.style.animationDuration = (6 + Math.random() * 8) + "s";
+            petal.style.animationDelay = (Math.random() * 5) + "s";
+            petal.style.fontSize = (14 + Math.random() * 12) + "px";
+            petalsContainer.appendChild(petal);
+        }
+    </script>
+</body>
+</html>
