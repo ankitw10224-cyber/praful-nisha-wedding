@@ -24,14 +24,15 @@
         margin-bottom: 20px;
         background: #000;
     }
-        .guest-card{
-    text-align: center;
-    padding: 10px;
+        .guest-row{
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
 }
 
-.guest-card p{
-    margin: 6px 0;
+.left, .right{
     font-size: 16px;
+    color: #333;
 }
         body {
             font-family: 'Poppins', sans-serif;
@@ -364,9 +365,17 @@
     <h2 class="title">🙏 आपले मान्यवर</h2>
 
     <div class="card guest-card">
-        <p>गं.भा  लीलाबाई मुरलीधरशेठ वाघ</p>
-        
-    </div>
+
+        <!-- 👉 इथे हे full code paste करायचं -->
+        <div class="guest-row">
+            <span class="left">श्री. वाघ परिवार</span>
+            <span class="right">श्री. देशमुख परिवार</span>
+        </div>
+
+        <div class="guest-row">
+            <span class="left">श्री. पाटील परिवार</span>
+            <span class="right">श्री. मोरे सर</span>
+        </div>
 </section>
 
     <section class="section">
