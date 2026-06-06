@@ -15,38 +15,35 @@
             box-sizing: border-box;
             scroll-behavior: smooth;
         }
-.bappa-img{
-        width: 100%;
-        max-height: 60vh;
-        object-fit: contain;
-        object-position: top;
-        border-radius: 20px;
-        margin-bottom: 20px;
-        background: #000;
-    }
-        .guest-row{
-    display: flex;
-    justify-content: space-between;
-    margin: 8px 0;
-}
 
-.left, .right{
-    font-size: 16px;
-}
-h1, h2, .title{
-    color: #fff;
-    animation: glow 2s ease-in-out infinite alternate;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #4b0f1f;
+            color: white;
+            overflow-x: hidden;
+        }
 
-@keyframes glow{
-    0%{
-        text-shadow: 0 0 5px #d4af37;
-    }
-    100%{
-        text-shadow: 0 0 10px #ffd700, 0 0 20px #ffcc00;
-    }
-}
-       <body>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top, #8d1838, #3b0716);
+            z-index: -2;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
         .hero h1 {
             font-family: 'Cinzel', serif;
             font-size: 4rem;
@@ -273,10 +270,12 @@ h1, h2, .title{
     </audio>
 
     <section class="hero">
-        <img src="bappa.jpg" alt="Ganpati Bappa" class="bappa-img">
+        <img src="bappa.jpg" alt="Ganpati Bappa Morya"
+style="width:100%; height:450px; object-fit:contain; object-position:top; border-radius:20px; margin-bottom:20px; background:#000;">
         <h2>॥ श्री गणेशाय नमः ॥</h2>
         <h1>Praful ❤️ Nisha</h1>
-        <p>प्रेम ,साथ आणि स्वप्नपूर्ती .......२९ जानेवारी २०२७......</p>
+        <p>१२ वर्षांच्या सुंदर सहप्रवासानंतर...</p>
+        <p>२९ जानेवारी २०२७</p>
         <button class="btn" id="musicBtn" onclick="playMusic()">🎵 Music Start</button>
     </section>
 
@@ -291,23 +290,13 @@ h1, h2, .title{
     </section>
 
     <section class="section">
-        <h2 class="title"></h2>
+        <h2 class="title">👰🤵 आमंत्रण</h2>
         <div class="card">
             <h3>चि. प्रफुल पंकज वाघ</h3>
-            <h3> (Master's in Retail Management)</h3>
-            <h3>स्व. प्रभाकर धर्मदासशेठ वाघ यांचा नातू</h3>
-            <h3>श्री. पंकज प्रभाकरशेठ वाघ यांचे कनिष्ठ चिरंजीव </h3>
             <h3>❤️</h3>
-
-
-            
             <h3>चि. सौ. का. निशा अनिल थोरात</h3>
-            <h3> (BSC in Physics)</h3>
-            <h3>श्री. रामदास राजारामशेठ थोरात यांची नात</h3>
-            <h3>श्री. अनिल रामदासशेठ थोरात यांची ज्येष्ठ कन्या</h3>
-
             <br>
-            <p>आपण सहकुटुंब उपस्थित राहून वर-वधूला शुभाशीर्वाद द्यावेत.</p>
+            <p>आपण सहकुटुंब उपस्थित राहून वधू-वरांना शुभाशीर्वाद द्यावेत.</p>
         </div>
     </section>
 
@@ -332,7 +321,7 @@ h1, h2, .title{
         <h2 class="title">👨‍👩‍👧‍👦 आई-वडील</h2>
         <div class="card">
             <p><b>वर पक्ष</b></p>
-            <p>सौ. रेखा- श्री. पंकज प्रभाकरशेठ वाघ यांचे कनिष्ठ चिरंजीव </p>
+            <p>सौ. रेखा- श्री. पंकज प्रभाकरशेठ वाघ यांचे द्वितिय चिरंजीव</p>
             <br>
             <p><b>वधू पक्ष</b></p>
             <p>सौ. रूपाली- श्री. अनिल रामदासशेठ थोरात यांची ज्येष्ठ कन्या</p>
@@ -340,28 +329,11 @@ h1, h2, .title{
     </section>
 
     <section class="section">
-        <h2 class="title">आशीर्वाद</h2>
+        <h2 class="title">❤️ आमची प्रेमकथा</h2>
         <div class="card">
-            <h3>सौ. यशोदा-श्री . कृष्णदास धर्मदासशेठ वाघ</h3>
-            <h3>सौ. किरण-श्री . संजय धर्मदासशेठ वाघ</h3>
+            १२ वर्षांच्या सुंदर नात्यानंतर आज आम्ही आयुष्यभरासाठी एकमेकांचे होणार आहोत.
         </div>
     </section>
-    <section class="section">
-    <h2 class="title">🙏 आपले मान्यवर</h2>
-
-    <div class="card guest-card">
-
-        <!-- 👉 इथे हे full code paste करायचं -->
-        <div class="guest-row">
-            <span class="left">श्री. वाघ परिवार</span>
-            <span class="right">श्री. देशमुख परिवार</span>
-        </div>
-
-        <div class="guest-row">
-            <span class="left">श्री. पाटील परिवार</span>
-            <span class="right">श्री. मोरे सर</span>
-        </div>
-</section>
 
     <section class="section">
         <h2 class="title">🌼 हळद समारंभ</h2>
@@ -379,11 +351,10 @@ h1, h2, .title{
     <section class="section">
         <h2 class="title">💍 विवाह सोहळा</h2>
         <div class="card">
-            <p>शुक्रवार , दि. २९ जानेवारी २०२७,</p>
-            <p>कृष्ण पक्ष अष्टमी,</p>
-            <p>शुभमुहूर्त - १२:२७ वा.</p>
+            <p>वरमाला : १२:०० PM</p>
+            <p>मुहूर्त : १२:१८ PM</p>
             <br>
-            <p>लक्ष्मी मंगल कार्यालय,मरकळ रोड, पुणे.</p>
+            <p>लक्ष्मी मंगल कार्यालय,मरकळरोड, पुणे.</p>
             <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=Laxmi%20Mangal%20Karyalay" target="_blank">
                 📍 View Location
             </a>
@@ -398,18 +369,7 @@ h1, h2, .title{
             <img src="praful3.jpg" alt="Moment 3">
         </div>
     </section>
-     <section class="section">
-    <h2 class="title">🌺निमंत्रक🌺</h2>
 
-    <div class="card">
-        <p>सौ. रेखा- श्री. पंकज प्रभाकरशेठ वाघ</p>
-        <p>सौ. छाया- श्री. अनिल प्रभाकरशेठ वाघ</p>
-        <p>सौ. सोनाली- श्री.दीपक प्रभाकरशेठ वाघ</p>
-
-        <br>
-
-        <p>
-</section>
     <section class="section">
         <h2 class="title">💌 RSVP</h2>
         <div class="card rsvp">
@@ -504,7 +464,6 @@ h1, h2, .title{
             petal.style.fontSize = (14 + Math.random() * 12) + "px";
             petalsContainer.appendChild(petal);
         }
-</script>
     </script>
 </body>
 </html>
