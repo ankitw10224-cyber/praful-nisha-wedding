@@ -9,6 +9,73 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
+        #welcomeScreen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,#4b0f1f,#2b0a12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 99999;
+}
+
+.welcome-content{
+    padding: 20px;
+}
+
+.welcome-content h1,
+.welcome-content p{
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.line1{
+    color: #ffd700;
+    font-size: 3rem;
+    animation: revealText 1.5s forwards;
+}
+
+.line2{
+    font-size: 1.4rem;
+    animation: revealText 1.5s forwards;
+    animation-delay: 1.5s;
+}
+
+.line3{
+    font-size: 1.1rem;
+    animation: revealText 1.5s forwards;
+    animation-delay: 3s;
+}
+
+@keyframes revealText{
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width:768px){
+
+    .line1{
+        font-size: 2rem;
+    }
+
+    .line2{
+        font-size: 1.1rem;
+    }
+
+    .line3{
+        font-size: .95rem;
+    }
+}
         .diyas{
     position: fixed;
     bottom: 10px;
@@ -484,6 +551,13 @@
     </style>
 </head>
 <body>
+    <div id="welcomeScreen">
+    <div class="welcome-content">
+        <h1 class="line1">💖 Praful ❤️ Nisha 💖</h1>
+        <p class="line2">वाघ परिवार आपले सहर्ष स्वागत आहे</p>
+        <p class="line3">आमच्या आनंदाच्या या अविस्मरणीय क्षणांचे साक्षीदार होऊन आपल्या शुभेच्छांचा वर्षाव करावा.</p>
+    </div>
+</div>
     <div class="diyas">
     <div class="diya">🪔</div>
     <div class="diya">🪔</div>
@@ -826,6 +900,14 @@ setTimeout(() => {
     clearInterval(fwInterval);
     canvas.style.display = "none";
 }, 10000);
+        setTimeout(() => {
+    document.getElementById("welcomeScreen").style.opacity = "0";
+
+    setTimeout(() => {
+        document.getElementById("welcomeScreen").style.display = "none";
+    }, 1000);
+
+}, 8000);
     </script>
 </body>
 </html>
