@@ -918,6 +918,17 @@ window.addEventListener("load", () => {
 
     }, 5000); // 👉 5 sec (fast cinematic exit)
 });
+        function playMusic(){
+    const audio = document.getElementById("bgMusic");
+    audio.volume = 0.6;
+
+    audio.play().then(() => {
+        console.log("Music playing");
+    }).catch(err => {
+        alert("Click again / browser blocked autoplay");
+    });
+}
+
     </script>
 </body>
 </html>
