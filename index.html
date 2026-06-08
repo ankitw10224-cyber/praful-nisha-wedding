@@ -892,28 +892,31 @@ setTimeout(() => {
 
 /* 4 सेकंदानंतर बंद */
 window.addEventListener("load", () => {
-
+    const screen = document.getElementById("welcomeScreen");
     const music = document.getElementById("bgMusic");
 
-    music.volume = 0.7;
+    // 🎵 Try music start
+    music.volume = 0.5;
 
-    function playMusic() {
-        let playPromise = music.play();
-
-        if (playPromise !== undefined) {
-            playPromise.catch(() => {
-                console.log("Autoplay blocked");
-            });
-        }
+    const playPromise = music.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            console.log("Autoplay blocked");
+        });
     }
 
-    // 🔥 TRY AUTO PLAY
-    setTimeout(playMusic, 500);
+    // 🎬 Welcome screen exit
+    setTimeout(() => {
+        screen.style.transition = "opacity 2s ease, filter 2s ease, transform 2s ease";
+        screen.style.opacity = "0";
+        screen.style.filter = "blur(15px)";
+        screen.style.transform = "scale(0.95)";
 
-    // 🔥 USER UNLOCK (IMPORTANT)
-    document.addEventListener("click", playMusic, { once: true });
-    document.addEventListener("touchstart", playMusic, { once: true });
+        setTimeout(() => {
+            screen.style.display = "none";
+        }, 2000);
 
+    }, 5000); // 👉 5 sec (fast cinematic exit)
 });
     </script>
 </body>
