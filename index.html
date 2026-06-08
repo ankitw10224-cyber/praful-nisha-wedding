@@ -22,10 +22,24 @@
     text-align: center;
     z-index: 99999;
 
-    opacity: 1;
-    filter: blur(0px);
+    opacity: 0;              /* ⭐ start hidden */
+    filter: blur(20px);      /* ⭐ start blur */
 
+    animation: welcomeEntry 1.5s ease forwards;
     transition: opacity 1.5s ease, filter 1.5s ease;
+}
+
+@keyframes welcomeEntry {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+        filter: blur(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px);
+    }
 }
         .diyas{
     position: fixed;
@@ -863,9 +877,9 @@ setTimeout(() => {
 setTimeout(() => {
     const screen = document.getElementById("welcomeScreen");
 
-    screen.style.transition = "opacity 1.5s ease, filter 1.5s ease";
     screen.style.opacity = "0";
     screen.style.filter = "blur(10px)";
+    screen.style.transform = "scale(0.95)";
 
     setTimeout(() => {
         screen.style.display = "none";
