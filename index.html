@@ -9,6 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
+        #line3,
+#typewriter{
+    color: white;
+}
+
+#typewriter::after{
+    content: "|";
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity: 0;
+    }
+}
         #welcomeScreen{
     position: fixed;
     top: 0;
@@ -555,7 +570,9 @@
     <div class="welcome-content">
         <h1 class="line1">💖 Praful ❤️ Nisha 💖</h1>
         <p class="line2">वाघ परिवार आपले सहर्ष स्वागत आहे</p>
-        <p class="line3">आमच्या आनंदाच्या या अविस्मरणीय क्षणांचे साक्षीदार होऊन आपल्या शुभेच्छांचा वर्षाव करावा.</p>
+        <p class="line3">
+    <span id="typewriter"></span>
+</p>
     </div>
 </div>
     <div class="diyas">
@@ -908,6 +925,20 @@ setTimeout(() => {
     }, 1000);
 
 }, 8000);
+        const text =
+"आमच्या आयुष्यातील या सुवर्णक्षणी आपली स्नेहपूर्ण उपस्थिती आणि शुभ आशीर्वाद लाभावेत, हीच सदिच्छा.";
+
+let i = 0;
+
+function typeWriter(){
+    if(i < text.length){
+        document.getElementById("typewriter").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 70);
+    }
+}
+
+setTimeout(typeWriter, 3500);
     </script>
 </body>
 </html>
