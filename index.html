@@ -9,17 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
-        #mainPage{
-    opacity: 0;
-    transform: rotateY(-90deg);
-    transform-origin: left;
-    transition: all 1.5s ease;
-}
-
-#mainPage.show{
-    opacity: 1;
-    transform: rotateY(0deg);
-}
         #welcomeScreen{
     padding: 10px;
     overflow: hidden;
@@ -551,12 +540,6 @@
 </head>
 <body>
     <div id="welcomeScreen">
-        
-</div>
-
-<div id="mainPage">
-</div>
-    <div id="welcomeScreen">
     <div class="welcome-content">
         <h1 class="line1">💖 Praful ❤️ Nisha 💖</h1>
         <p class="line2">वाघ परिवारा तर्फे आपले सहर्ष स्वागत </p>
@@ -903,24 +886,36 @@ animateFireworks();
 
 const fwInterval = setInterval(createFirework, 1200);
 
-setTimeout(() => {
+/* 4 सेकंदानंतर बंद */
+window.addEventListener("load", () => {
+
     const screen = document.getElementById("welcomeScreen");
-    const main = document.getElementById("mainPage");
+    const music = document.getElementById("bgMusic");
 
-    // welcome exit (blur fade)
-    screen.style.transition = "opacity 1.5s ease, transform 1.5s ease";
-    screen.style.opacity = "0";
-    screen.style.transform = "scale(0.9)";
-
+    // 🎵 MUSIC START (sync with entry)
     setTimeout(() => {
-        screen.style.display = "none";
+        music.volume = 0.5;
+        music.play().catch(()=> {
+            console.log("User interaction required for music");
+        });
+    }, 1000);
 
-        // 📖 book page open effect
-        main.classList.add("show");
+    // 🎬 EXIT AFTER 8 SEC (cinematic fade + blur + zoom)
+    setTimeout(() => {
 
-    }, 1500);
+        screen.style.transition = "opacity 2s ease, filter 2s ease, transform 2s ease";
 
-}, 8000);
+        screen.style.opacity = "0";
+        screen.style.filter = "blur(15px)";
+        screen.style.transform = "scale(0.95)";
+
+        setTimeout(() => {
+            screen.style.display = "none";
+        }, 2000);
+
+    }, 8000);
+
+});
     </script>
 </body>
 </html>
