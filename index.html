@@ -9,22 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
-        #line3,
-#typewriter{
+        ##line3,
+#typewriter {
     color: white;
+    display: inline-block;
 }
 
-#typewriter::after{
+/* blinking cursor */
+#typewriter::after {
     content: "|";
+    margin-left: 2px;
     animation: blink 0.8s infinite;
 }
 
-@keyframes blink{
-    50%{
+@keyframes blink {
+    50% {
         opacity: 0;
     }
 }
-        #welcomeScreen{
+
+/* Welcome Screen */
+#welcomeScreen {
     position: fixed;
     top: 0;
     left: 0;
@@ -36,60 +41,26 @@
     align-items: center;
     text-align: center;
     z-index: 99999;
+    opacity: 1;
+    transition: opacity 1.5s ease;
 }
 
-.welcome-content{
+.welcome-content {
     padding: 20px;
 }
 
+/* REMOVE CSS animation conflict (important fix) */
 .welcome-content h1,
-.welcome-content p{
-    opacity: 0;
-    transform: translateY(30px);
+.welcome-content p {
+    opacity: 1;
+    transform: none;
 }
 
-.line1{
-    color: #ffd700;
-    font-size: 3rem;
-    animation: revealText 1.5s forwards;
-}
-
-.line2{
-    font-size: 1.4rem;
-    animation: revealText 1.5s forwards;
-    animation-delay: 1.5s;
-}
-
-.line3{
-    font-size: 1.1rem;
-    animation: revealText 1.5s forwards;
-    animation-delay: 3s;
-}
-
-@keyframes revealText{
-    from{
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to{
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+/* responsive */
 @media(max-width:768px){
-
-    .line1{
-        font-size: 2rem;
-    }
-
-    .line2{
-        font-size: 1.1rem;
-    }
-
-    .line3{
-        font-size: .95rem;
-    }
+    .line1 { font-size: 2rem; }
+    .line2 { font-size: 1.1rem; }
+    .line3 { font-size: .95rem; }
 }
         .diyas{
     position: fixed;
@@ -925,7 +896,7 @@ setTimeout(() => {
 }, 12000);
 
 }, 8000);
-        const text =
+        cconst text =
 "आमच्या आयुष्यातील या सुवर्णक्षणी आपली स्नेहपूर्ण उपस्थिती आणि शुभ आशीर्वाद लाभावेत, हीच सदिच्छा.";
 
 let i = 0;
@@ -938,17 +909,16 @@ function typeWriter() {
     }
 }
 
-// Start typing after 3.5 sec
+// start typing after 3.5 sec
 setTimeout(typeWriter, 3500);
 
 
-// Welcome screen fade out + remove (clean version)
+// fade out welcome screen after 8 sec
 setTimeout(() => {
     const screen = document.getElementById("welcomeScreen");
-    screen.style.opacity = "0";
-    screen.style.transition = "opacity 1.5s ease";
 
-    // remove after fade completes
+    screen.style.opacity = "0";
+
     setTimeout(() => {
         screen.style.display = "none";
     }, 1500);
