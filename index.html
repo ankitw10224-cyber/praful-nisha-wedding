@@ -9,6 +9,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
+        .shimmer{
+    background: linear-gradient(
+        90deg,
+        #ffd700 0%,
+        #fff8dc 25%,
+        #ffffff 50%,
+        #fff8dc 75%,
+        #ffd700 100%
+    );
+
+    background-size: 300% auto;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    animation:
+        heartbeat 1.5s infinite,
+        shimmer 4s linear infinite;
+}
+
+@keyframes shimmer{
+    0%{
+        background-position: -300% center;
+    }
+    100%{
+        background-position: 300% center;
+    }
+}
         .diyas{
     position: fixed;
     bottom: 10px;
@@ -109,6 +138,9 @@
     text-shadow: 0 0 10px #ffd700,
                  0 0 20px #ffd700,
                  0 0 30px #ffcc00;
+
+            font-weight: 700;
+    letter-spacing: 2px;
 }
 
 @keyframes heartbeat{
@@ -506,7 +538,7 @@
 <img src="bappa.jpg" alt="Ganpati Bappa Morya" class="bappa-img">
         <h2>॥ श्री गणेशाय नमः ॥</h2>
         ।। श्री कुलस्वामिनी बिजासनी माता प्रसन्न ।।
-        <h1 class="heartbeat">Praful ❤️ Nisha</h1>
+        <h1 class="heartbeat shimmer">Praful ❤️ Nisha</h1>
         <p>१२ वर्षांच्या सुंदर सहप्रवासानंतर...</p>
         <p>२९ जानेवारी २०२७</p>
         <button class="btn" id="musicBtn" onclick="playMusic()">🎵 Music Start</button>
