@@ -21,60 +21,11 @@
     align-items: center;
     text-align: center;
     z-index: 99999;
-}
 
-.welcome-content{
-    padding: 20px;
-}
+    opacity: 1;
+    filter: blur(0px);
 
-.welcome-content h1,
-.welcome-content p{
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.line1{
-    color: #ffd700;
-    font-size: 3rem;
-    animation: revealText 1.5s forwards;
-}
-
-.line2{
-    font-size: 1.4rem;
-    animation: revealText 1.5s forwards;
-    animation-delay: 1.5s;
-}
-
-.line3{
-    font-size: 1.1rem;
-    animation: revealText 1.5s forwards;
-    animation-delay: 3s;
-}
-
-@keyframes revealText{
-    from{
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to{
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media(max-width:768px){
-
-    .line1{
-        font-size: 2rem;
-    }
-
-    .line2{
-        font-size: 1.1rem;
-    }
-
-    .line3{
-        font-size: .95rem;
-    }
+    transition: opacity 1.5s ease, filter 1.5s ease;
 }
         .diyas{
     position: fixed;
@@ -898,14 +849,27 @@ const fwInterval = setInterval(createFirework, 1200);
 /* 4 सेकंदानंतर बंद */
 setTimeout(() => {
     clearInterval(fwInterval);
-    canvas.style.display = "none";
-}, 10000);
-        setTimeout(() => {
-    document.getElementById("welcomeScreen").style.opacity = "0";
+    canvas.style.transition = "opacity 1s ease";
+    canvas.style.opacity = "0";
 
     setTimeout(() => {
-        document.getElementById("welcomeScreen").style.display = "none";
+        canvas.style.display = "none";
     }, 1000);
+
+}, 10000);
+
+
+// Welcome screen blur fade
+setTimeout(() => {
+    const screen = document.getElementById("welcomeScreen");
+
+    screen.style.transition = "opacity 1.5s ease, filter 1.5s ease";
+    screen.style.opacity = "0";
+    screen.style.filter = "blur(10px)";
+
+    setTimeout(() => {
+        screen.style.display = "none";
+    }, 1500);
 
 }, 8000);
     </script>
