@@ -547,6 +547,8 @@
     </div>
 </div>
 
+<audio id="bgMusic" src="music.mp3"></audio>
+</div>
     <div class="diyas">
     <div class="diya">🪔</div>
     <div class="diya">🪔</div>
@@ -560,9 +562,9 @@
 
     <div class="petals" id="petals"></div>
 
-   <audio id="bgMusic" loop preload="auto">
-    <source src="./mere-piya-ghar-aavenge.mp3" type="audio/mpeg">
-</audio>
+    <audio id="bgMusic" loop>
+        <source src="mere-piya-ghar-aavenge.mp3" type="audio/mpeg">
+    </audio>
 
     <section class="hero">
         <img src="bappa.jpg" alt="Ganpati Bappa Morya"
@@ -572,6 +574,7 @@
         <h1 class="heartbeat">Praful ❤️ Nisha</h1>
         <p>१२ वर्षांच्या सुंदर सहप्रवासानंतर...</p>
         <p>२९ जानेवारी २०२७</p>
+        <button class="btn" id="musicBtn" onclick="playMusic()">🎵 Music Start</button>
     </section>
 
     <section class="section">
@@ -758,6 +761,19 @@
     </footer>
 
     <script>
+        // Audio Toggle Feature
+        function playMusic(){
+            const audio = document.getElementById("bgMusic");
+            const btn = document.getElementById("musicBtn");
+            if (audio.paused) {
+                audio.play().then(() => {
+                    btn.innerHTML = "🎵 Music Playing";
+                }).catch(err => console.log("Audio play blocked: ", err));
+            } else {
+                audio.pause();
+                btn.innerHTML = "🎵 Music Start";
+            }
+        }
 
         // Optimized Target Timer Code
         const targetDate = new Date("Jan 29, 2027 12:18:00").getTime();
@@ -878,27 +894,32 @@ setTimeout(() => {
 /* 4 सेकंदानंतर बंद */
 window.addEventListener("load", () => {
 
+    const screen = document.getElementById("welcomeScreen");
     const music = document.getElementById("bgMusic");
 
-    music.volume = 0.6;
-    music.load();
-
-    function startMusic() {
-        music.play()
-        .then(() => {
-            console.log("✅ Music Playing");
-        })
-        .catch(err => {
-            console.log("❌ BLOCKED:", err);
+    // 🎵 MUSIC START (sync with entry)
+    setTimeout(() => {
+        music.volume = 0.5;
+        music.play().catch(()=> {
+            console.log("User interaction required for music");
         });
-    }
+    }, 1000);
 
-    // ANY user interaction
-    document.body.addEventListener("click", startMusic, { once: true });
-    document.body.addEventListener("touchstart", startMusic, { once: true });
+    // 🎬 EXIT AFTER 8 SEC (cinematic fade + blur + zoom)
+    setTimeout(() => {
 
-});
-    window.playMusic = startMusic;
+        screen.style.transition = "opacity 2s ease, filter 2s ease, transform 2s ease";
+
+        screen.style.opacity = "0";
+        screen.style.filter = "blur(15px)";
+        screen.style.transform = "scale(0.95)";
+
+        setTimeout(() => {
+            screen.style.display = "none";
+        }, 2000);
+
+    }, 4000);
+
 });
     </script>
 </body>
