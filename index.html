@@ -9,6 +9,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
+        .heartbeat{
+    animation: heartbeat 1.5s infinite;
+    display: inline-block;
+}
+
+@keyframes heartbeat{
+    0%{
+        transform: scale(1);
+    }
+    14%{
+        transform: scale(1.15);
+    }
+    28%{
+        transform: scale(1);
+    }
+    42%{
+        transform: scale(1.15);
+    }
+    70%{
+        transform: scale(1);
+    }
+}
         * {
             margin: 0;
             padding: 0;
@@ -377,7 +399,7 @@
 <img src="bappa.jpg" alt="Ganpati Bappa Morya" class="bappa-img">
         <h2>॥ श्री गणेशाय नमः ॥</h2>
         ।। श्री कुलस्वामिनी बिजासनी माता प्रसन्न ।।
-        <h1>Praful ❤️ Nisha</h1>
+        <h1 class="heartbeat">Praful ❤️ Nisha</h1>
         <p>१२ वर्षांच्या सुंदर सहप्रवासानंतर...</p>
         <p>२९ जानेवारी २०२७</p>
         <button class="btn" id="musicBtn" onclick="playMusic()">🎵 Music Start</button>
