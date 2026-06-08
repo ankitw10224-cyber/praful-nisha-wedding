@@ -9,17 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
-        #mainPage{
-    opacity: 0;
-    transform: rotateY(-90deg);
-    transform-origin: left;
-    transition: all 1.5s ease;
-}
-
-#mainPage.show{
-    opacity: 1;
-    transform: rotateY(0deg);
-}
         #welcomeScreen{
     padding: 10px;
     overflow: hidden;
@@ -292,59 +281,6 @@
 }
 
         body {
-            body{
-    margin: 0;
-    font-family: sans-serif;
-    background: #4b0f1f;
-    color: white;
-    perspective: 1200px; /* ⭐ 3D effect */
-}
-
-/* WELCOME SCREEN */
-#welcomeScreen{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle,#4b0f1f,#12050a);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 99999;
-
-    opacity: 1;
-    transition: all 1.5s ease;
-}
-
-/* MAIN PAGE (BOOK CLOSED STATE) */
-#mainPage{
-    opacity: 0;
-    transform: rotateY(-90deg);
-    transform-origin: left;
-    transition: all 1.5s ease;
-    padding: 40px;
-}
-
-/* OPEN BOOK */
-#mainPage.show{
-    opacity: 1;
-    transform: rotateY(0deg);
-}
-
-/* simple card */
-.card{
-    background: rgba(255,255,255,0.1);
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-}
-
-.title{
-    text-align: center;
-}
             font-family: 'Poppins', sans-serif;
             background: #4b0f1f;
             color: white;
@@ -604,31 +540,10 @@
 </head>
 <body>
     <div id="welcomeScreen">
-    <!-- welcome content -->
-</div>
-
-<div id="mainPage">
-    <!-- full website content -->
-</div>
-    <div id="welcomeScreen">
     <div class="welcome-content">
-        <h1>💖 Praful ❤️ Nisha 💖</h1>
-        <p>वाघ परिवार आपले सहर्ष स्वागत आहे</p>
-        <p>या शुभ क्षणांचे साक्षीदार व्हा</p>
-    </div>
-</div>
-
-<div id="mainPage">
-    <h1 class="title">Wedding Invitation</h1>
-
-    <div class="card">
-        <h2>Praful ❤️ Nisha</h2>
-        <p>29 January 2027</p>
-        <p>Pune, Maharashtra</p>
-    </div>
-
-    <div class="card">
-        <p>🙏 आपले हार्दिक स्वागत आहे 🙏</p>
+        <h1 class="line1">💖 Praful ❤️ Nisha 💖</h1>
+        <p class="line2">वाघ परिवारा तर्फे आपले सहर्ष स्वागत </p>
+        <p class="line3">प्रेम आणि आशीर्वादांनी भरलेल्या या शुभ क्षणांचे आपण साक्षीदार व्हावे.</p>
     </div>
 </div>
 
@@ -1001,23 +916,6 @@ window.addEventListener("load", () => {
     }, 8000);
 
 });
-       setTimeout(() => {
-    const screen = document.getElementById("welcomeScreen");
-    const main = document.getElementById("mainPage");
-
-    // 🎬 welcome exit (fade + zoom)
-    screen.style.opacity = "0";
-    screen.style.transform = "scale(0.9)";
-
-    setTimeout(() => {
-        screen.style.display = "none";
-
-        // 📖 book open effect
-        main.classList.add("show");
-
-    }, 1500);
-
-}, 8000);
     </script>
 </body>
 </html>
