@@ -9,72 +9,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
-        #welcomeScreen{
+       #welcomeScreen{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg,#4b0f1f,#2b0a12);
+    background: radial-gradient(circle,#4b0f1f,#12050a);
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     z-index: 99999;
+
+    opacity: 0;
+    transform: scale(1.1);
+    filter: blur(20px);
+
+    animation: welcomeEntry 2s ease forwards;
+}
+
+@keyframes welcomeEntry{
+    to{
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px);
+    }
 }
 
 .welcome-content{
-    padding: 20px;
-}
-
-.welcome-content h1,
-.welcome-content p{
-    opacity: 0;
-    transform: translateY(30px);
+    color: white;
 }
 
 .line1{
-    color: #ffd700;
     font-size: 3rem;
-    animation: revealText 1.5s forwards;
+    color: gold;
+    text-shadow: 0 0 20px gold;
+    opacity: 0;
+    animation: textReveal 1.5s ease forwards;
 }
 
 .line2{
-    font-size: 1.4rem;
-    animation: revealText 1.5s forwards;
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: textReveal 1.5s ease forwards;
     animation-delay: 1.5s;
 }
 
 .line3{
-    font-size: 1.1rem;
-    animation: revealText 1.5s forwards;
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: textReveal 1.5s ease forwards;
     animation-delay: 3s;
 }
 
-@keyframes revealText{
-    from{
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to{
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media(max-width:768px){
-
-    .line1{
-        font-size: 2rem;
-    }
-
-    .line2{
-        font-size: 1.1rem;
-    }
-
-    .line3{
-        font-size: .95rem;
-    }
+@keyframes textReveal{
+    from{opacity:0; transform: translateY(30px);}
+    to{opacity:1; transform: translateY(0);}
 }
         .diyas{
     position: fixed;
@@ -555,8 +546,11 @@
     <div class="welcome-content">
         <h1 class="line1">💖 Praful ❤️ Nisha 💖</h1>
         <p class="line2">वाघ परिवार आपले सहर्ष स्वागत आहे</p>
-        <p class="line3">आमच्या आनंदाच्या या अविस्मरणीय क्षणांचे साक्षीदार होऊन आपल्या शुभेच्छांचा वर्षाव करावा.</p>
+        <p class="line3">आमच्या शुभ क्षणांचे साक्षीदार व्हा</p>
     </div>
+</div>
+
+<audio id="bgMusic" src="music.mp3"></audio>
 </div>
     <div class="diyas">
     <div class="diya">🪔</div>
@@ -896,18 +890,35 @@ animateFireworks();
 const fwInterval = setInterval(createFirework, 1200);
 
 /* 4 सेकंदानंतर बंद */
-setTimeout(() => {
-    clearInterval(fwInterval);
-    canvas.style.display = "none";
-}, 10000);
-        setTimeout(() => {
-    document.getElementById("welcomeScreen").style.opacity = "0";
+window.addEventListener("load", () => {
 
+    const screen = document.getElementById("welcomeScreen");
+    const music = document.getElementById("bgMusic");
+
+    // 🎵 MUSIC START (sync with entry)
     setTimeout(() => {
-        document.getElementById("welcomeScreen").style.display = "none";
+        music.volume = 0.5;
+        music.play().catch(()=> {
+            console.log("User interaction required for music");
+        });
     }, 1000);
 
-}, 8000);
+    // 🎬 EXIT AFTER 8 SEC (cinematic fade + blur + zoom)
+    setTimeout(() => {
+
+        screen.style.transition = "opacity 2s ease, filter 2s ease, transform 2s ease";
+
+        screen.style.opacity = "0";
+        screen.style.filter = "blur(15px)";
+        screen.style.transform = "scale(0.95)";
+
+        setTimeout(() => {
+            screen.style.display = "none";
+        }, 2000);
+
+    }, 8000);
+
+});
     </script>
 </body>
 </html>
