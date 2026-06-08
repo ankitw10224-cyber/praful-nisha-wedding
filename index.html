@@ -9,6 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
+        #fireworks{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
         .particles{
     position: fixed;
     top: 0;
@@ -427,6 +436,8 @@
     </style>
 </head>
 <body>
+    <canvas id="fireworks"></canvas>
+   
     <div class="particles"></div>
 
     <div class="petals" id="petals"></div>
@@ -707,6 +718,59 @@ for(let i = 0; i < 50; i++){
 
     particleContainer.appendChild(particle);
 }
+        const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particlesFW = [];
+
+function createFirework() {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * (canvas.height / 2);
+
+    for(let i = 0; i < 40; i++){
+        particlesFW.push({
+            x,
+            y,
+            dx: (Math.random() - 0.5) * 8,
+            dy: (Math.random() - 0.5) * 8,
+            life: 60
+        });
+    }
+}
+
+function animateFireworks(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particlesFW.forEach((p, index) => {
+        p.x += p.dx;
+        p.y += p.dy;
+        p.life--;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = "#ffd700";
+        ctx.fill();
+
+        if(p.life <= 0){
+            particlesFW.splice(index, 1);
+        }
+    });
+
+    requestAnimationFrame(animateFireworks);
+}
+
+animateFireworks();
+
+const fwInterval = setInterval(createFirework, 500);
+
+/* 4 सेकंदानंतर बंद */
+setTimeout(() => {
+    clearInterval(fwInterval);
+    canvas.style.display = "none";
+}, 4000);
     </script>
 </body>
 </html>
