@@ -734,9 +734,9 @@ function createFirework() {
         particlesFW.push({
             x,
             y,
-            dx: (Math.random() - 0.5) * 8,
-            dy: (Math.random() - 0.5) * 8,
-            life: 60
+            dx: (Math.random() - 0.5) * 3,
+dy: (Math.random() - 0.5) * 3,
+life: 120
         });
     }
 }
@@ -750,7 +750,7 @@ function animateFireworks(){
         p.life--;
 
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
         ctx.fillStyle = "#ffd700";
         ctx.fill();
 
@@ -764,13 +764,13 @@ function animateFireworks(){
 
 animateFireworks();
 
-const fwInterval = setInterval(createFirework, 500);
+const fwInterval = setInterval(createFirework, 1200);
 
 /* 4 सेकंदानंतर बंद */
 setTimeout(() => {
     clearInterval(fwInterval);
     canvas.style.display = "none";
-}, 4000);
+}, 10000);
     </script>
 </body>
 </html>
