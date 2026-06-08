@@ -547,7 +547,6 @@
     </div>
 </div>
 
-</div>
     <div class="diyas">
     <div class="diya">🪔</div>
     <div class="diya">🪔</div>
@@ -760,19 +759,6 @@
     </footer>
 
     <script>
-        // Audio Toggle Feature
-        function playMusic(){
-            const audio = document.getElementById("bgMusic");
-            const btn = document.getElementById("musicBtn");
-            if (audio.paused) {
-                audio.play().then(() => {
-                    btn.innerHTML = "🎵 Music Playing";
-                }).catch(err => console.log("Audio play blocked: ", err));
-            } else {
-                audio.pause();
-                btn.innerHTML = "🎵 Music Start";
-            }
-        }
 
         // Optimized Target Timer Code
         const targetDate = new Date("Jan 29, 2027 12:18:00").getTime();
@@ -895,40 +881,37 @@ window.addEventListener("load", () => {
     const screen = document.getElementById("welcomeScreen");
     const music = document.getElementById("bgMusic");
 
-    // 🎵 Try music start
     music.volume = 0.5;
 
-    const playPromise = music.play();
-    if (playPromise !== undefined) {
-        playPromise.catch(() => {
-            console.log("Autoplay blocked");
-        });
-    }
+    // IMPORTANT FIX
+    document.body.addEventListener("click", () => {
+        music.play().catch(()=>{});
+    }, { once: true });
 
-    // 🎬 Welcome screen exit
     setTimeout(() => {
-        screen.style.transition = "opacity 2s ease, filter 2s ease, transform 2s ease";
+        screen.style.transition = "opacity 1.5s ease, filter 1.5s ease, transform 1.5s ease";
         screen.style.opacity = "0";
         screen.style.filter = "blur(15px)";
         screen.style.transform = "scale(0.95)";
 
         setTimeout(() => {
             screen.style.display = "none";
-        }, 2000);
+        }, 1500);
 
-    }, 5000); // 👉 5 sec (fast cinematic exit)
+    }, 5000);
 });
         function playMusic(){
     const audio = document.getElementById("bgMusic");
+    const btn = document.getElementById("musicBtn");
+
     audio.volume = 0.6;
 
     audio.play().then(() => {
-        console.log("Music playing");
-    }).catch(err => {
-        alert("Click again / browser blocked autoplay");
+        btn.innerHTML = "🎵 Music Playing";
+    }).catch(() => {
+        alert("Browser blocked autoplay. Please tap again.");
     });
 }
-
     </script>
 </body>
 </html>
