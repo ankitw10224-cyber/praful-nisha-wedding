@@ -9,6 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
+        #mainPage{
+    opacity: 0;
+    transform: rotateY(-90deg);
+    transform-origin: left;
+    transition: all 1.5s ease;
+}
+
+#mainPage.show{
+    opacity: 1;
+    transform: rotateY(0deg);
+}
         #welcomeScreen{
     padding: 10px;
     overflow: hidden;
@@ -540,6 +551,13 @@
 </head>
 <body>
     <div id="welcomeScreen">
+    <!-- welcome content -->
+</div>
+
+<div id="mainPage">
+    <!-- full website content -->
+</div>
+    <div id="welcomeScreen">
     <div class="welcome-content">
         <h1 class="line1">💖 Praful ❤️ Nisha 💖</h1>
         <p class="line2">वाघ परिवारा तर्फे आपले सहर्ष स्वागत </p>
@@ -916,6 +934,24 @@ window.addEventListener("load", () => {
     }, 8000);
 
 });
+        setTimeout(() => {
+    const screen = document.getElementById("welcomeScreen");
+    const main = document.getElementById("mainPage");
+
+    // welcome exit (blur fade)
+    screen.style.transition = "opacity 1.5s ease, transform 1.5s ease";
+    screen.style.opacity = "0";
+    screen.style.transform = "scale(0.9)";
+
+    setTimeout(() => {
+        screen.style.display = "none";
+
+        // 📖 book page open effect
+        main.classList.add("show");
+
+    }, 1500);
+
+}, 8000);
     </script>
 </body>
 </html>
