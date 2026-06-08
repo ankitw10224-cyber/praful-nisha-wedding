@@ -893,29 +893,26 @@ setTimeout(() => {
 /* 4 सेकंदानंतर बंद */
 window.addEventListener("load", () => {
 
-    const screen = document.getElementById("welcomeScreen");
     const music = document.getElementById("bgMusic");
 
-    music.volume = 0.6;
+    music.volume = 0.7;
 
-    // 🎵 music start
-    setTimeout(() => {
-        music.play().catch(() => {});
-    }, 800);
+    function playMusic() {
+        let playPromise = music.play();
 
-    // 🎬 fast welcome exit
-    setTimeout(() => {
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                console.log("Autoplay blocked");
+            });
+        }
+    }
 
-        screen.style.transition = "opacity 1.5s ease, filter 1.5s ease, transform 1.5s ease";
-        screen.style.opacity = "0";
-        screen.style.filter = "blur(15px)";
-        screen.style.transform = "scale(0.95)";
+    // 🔥 TRY AUTO PLAY
+    setTimeout(playMusic, 500);
 
-        setTimeout(() => {
-            screen.style.display = "none";
-        }, 1500);
-
-    }, 3500);
+    // 🔥 USER UNLOCK (IMPORTANT)
+    document.addEventListener("click", playMusic, { once: true });
+    document.addEventListener("touchstart", playMusic, { once: true });
 
 });
     </script>
