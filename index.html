@@ -930,15 +930,30 @@ setTimeout(() => {
 
 let i = 0;
 
-function typeWriter(){
-    if(i < text.length){
+function typeWriter() {
+    if (i < text.length) {
         document.getElementById("typewriter").innerHTML += text.charAt(i);
         i++;
         setTimeout(typeWriter, 40);
     }
 }
 
+// Start typing after 3.5 sec
 setTimeout(typeWriter, 3500);
+
+
+// Welcome screen fade out + remove (clean version)
+setTimeout(() => {
+    const screen = document.getElementById("welcomeScreen");
+    screen.style.opacity = "0";
+    screen.style.transition = "opacity 1.5s ease";
+
+    // remove after fade completes
+    setTimeout(() => {
+        screen.style.display = "none";
+    }, 1500);
+
+}, 8000);
     </script>
 </body>
 </html>
