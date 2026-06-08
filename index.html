@@ -878,23 +878,35 @@ setTimeout(() => {
 
 /* 4 सेकंदानंतर बंद */
 window.addEventListener("load", () => {
+
     const screen = document.getElementById("welcomeScreen");
     const music = document.getElementById("bgMusic");
 
     music.volume = 0.6;
 
-    // ✅ SUPER IMPORTANT: safe user interaction unlock
-    const unlockAudio = () => {
-        music.play().then(() => {
-            console.log("Music started");
-        }).catch(err => {
-            console.log("Still blocked:", err);
-        });
-    };
+    // 🔥 IMPORTANT: preload audio
+    music.load();
 
-    // works on ANY click/touch
-    document.addEventListener("click", unlockAudio, { once: true });
-    document.addEventListener("touchstart", unlockAudio, { once: true });
+    let started = false;
+
+    function startMusic() {
+        if (started) return;
+
+        started = true;
+
+        music.play()
+        .then(() => {
+            console.log("✅ Music Playing");
+        })
+        .catch(err => {
+            console.log("❌ Blocked:", err);
+            started = false;
+        });
+    }
+
+    // ANY user interaction
+    document.addEventListener("click", startMusic);
+    document.addEventListener("touchstart", startMusic);
 
     // welcome screen exit
     setTimeout(() => {
@@ -908,6 +920,7 @@ window.addEventListener("load", () => {
         }, 1500);
 
     }, 5000);
+
 });
         function playMusic(){
     const audio = document.getElementById("bgMusic");
