@@ -560,8 +560,8 @@
 
     <div class="petals" id="petals"></div>
 
-    <audio id="bgMusic" loop>
-    <source src="mere-piya-ghar-aavenge.mp3" type="audio/mpeg">
+   <audio id="bgMusic" loop preload="auto">
+    <source src="./mere-piya-ghar-aavenge.mp3" type="audio/mpeg">
 </audio>
 
     <section class="hero">
@@ -572,7 +572,6 @@
         <h1 class="heartbeat">Praful ❤️ Nisha</h1>
         <p>१२ वर्षांच्या सुंदर सहप्रवासानंतर...</p>
         <p>२९ जानेवारी २०२७</p>
-        <button class="btn" id="musicBtn" onclick="playMusic()">🎵 Music Start</button>
     </section>
 
     <section class="section">
@@ -879,61 +878,28 @@ setTimeout(() => {
 /* 4 सेकंदानंतर बंद */
 window.addEventListener("load", () => {
 
-    const screen = document.getElementById("welcomeScreen");
     const music = document.getElementById("bgMusic");
 
     music.volume = 0.6;
-
-    // 🔥 IMPORTANT: preload audio
     music.load();
 
-    let started = false;
-
     function startMusic() {
-        if (started) return;
-
-        started = true;
-
         music.play()
         .then(() => {
             console.log("✅ Music Playing");
         })
         .catch(err => {
-            console.log("❌ Blocked:", err);
-            started = false;
+            console.log("❌ BLOCKED:", err);
         });
     }
 
     // ANY user interaction
-    document.addEventListener("click", startMusic);
-    document.addEventListener("touchstart", startMusic);
-
-    // welcome screen exit
-    setTimeout(() => {
-        screen.style.transition = "opacity 1.5s ease, transform 1.5s ease, filter 1.5s ease";
-        screen.style.opacity = "0";
-        screen.style.transform = "scale(0.95)";
-        screen.style.filter = "blur(10px)";
-
-        setTimeout(() => {
-            screen.style.display = "none";
-        }, 1500);
-
-    }, 5000);
+    document.body.addEventListener("click", startMusic, { once: true });
+    document.body.addEventListener("touchstart", startMusic, { once: true });
 
 });
-        function playMusic(){
-    const audio = document.getElementById("bgMusic");
-    const btn = document.getElementById("musicBtn");
-
-    audio.volume = 0.6;
-
-    audio.play().then(() => {
-        btn.innerHTML = "🎵 Music Playing";
-    }).catch(() => {
-        alert("Browser blocked autoplay. Please tap again.");
-    });
-}
+    window.playMusic = startMusic;
+});
     </script>
 </body>
 </html>
