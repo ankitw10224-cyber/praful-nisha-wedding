@@ -881,18 +881,27 @@ window.addEventListener("load", () => {
     const screen = document.getElementById("welcomeScreen");
     const music = document.getElementById("bgMusic");
 
-    music.volume = 0.5;
+    music.volume = 0.6;
 
-    // IMPORTANT FIX
-    document.body.addEventListener("click", () => {
-        music.play().catch(()=>{});
-    }, { once: true });
+    // ✅ SUPER IMPORTANT: safe user interaction unlock
+    const unlockAudio = () => {
+        music.play().then(() => {
+            console.log("Music started");
+        }).catch(err => {
+            console.log("Still blocked:", err);
+        });
+    };
 
+    // works on ANY click/touch
+    document.addEventListener("click", unlockAudio, { once: true });
+    document.addEventListener("touchstart", unlockAudio, { once: true });
+
+    // welcome screen exit
     setTimeout(() => {
-        screen.style.transition = "opacity 1.5s ease, filter 1.5s ease, transform 1.5s ease";
+        screen.style.transition = "opacity 1.5s ease, transform 1.5s ease, filter 1.5s ease";
         screen.style.opacity = "0";
-        screen.style.filter = "blur(15px)";
         screen.style.transform = "scale(0.95)";
+        screen.style.filter = "blur(10px)";
 
         setTimeout(() => {
             screen.style.display = "none";
