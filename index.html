@@ -9,6 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
+        #welcomeScreen{
+    padding: 10px;
+    overflow: hidden;
+}
        #welcomeScreen{
     position: fixed;
     top: 0;
@@ -38,29 +42,22 @@
 }
 
 .welcome-content{
-    color: white;
+    padding: 20px;
+    max-width: 90%;
 }
 
 .line1{
-    font-size: 3rem;
-    color: gold;
-    text-shadow: 0 0 20px gold;
-    opacity: 0;
-    animation: textReveal 1.5s ease forwards;
+    font-size: clamp(1.8rem, 6vw, 3rem);
+    word-break: break-word;
 }
 
 .line2{
-    font-size: 1.5rem;
-    opacity: 0;
-    animation: textReveal 1.5s ease forwards;
-    animation-delay: 1.5s;
+    font-size: clamp(1rem, 4.5vw, 1.4rem);
 }
 
 .line3{
-    font-size: 1.2rem;
-    opacity: 0;
-    animation: textReveal 1.5s ease forwards;
-    animation-delay: 3s;
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+    padding: 0 10px;
 }
 
 @keyframes textReveal{
