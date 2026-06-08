@@ -920,9 +920,9 @@ setTimeout(() => {
         setTimeout(() => {
     document.getElementById("welcomeScreen").style.opacity = "0";
 
-    setTimeout(() => {
-        document.getElementById("welcomeScreen").style.display = "none";
-    }, 1000);
+   setTimeout(() => {
+    document.getElementById("welcomeScreen").style.display = "none";
+}, 12000);
 
 }, 8000);
         const text =
@@ -934,7 +934,7 @@ function typeWriter(){
     if(i < text.length){
         document.getElementById("typewriter").innerHTML += text.charAt(i);
         i++;
-        setTimeout(typeWriter, 70);
+        setTimeout(typeWriter, 40);
     }
 }
 
