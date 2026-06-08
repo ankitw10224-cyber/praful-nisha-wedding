@@ -9,37 +9,65 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
-        #welcomeScreen{
+        #introScreen{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg,#4b0f1f,#2b0a12);
+    background: radial-gradient(circle at center,#4b0f1f,#12050a);
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    overflow: hidden;
     z-index: 99999;
 
-    opacity: 0;              /* ⭐ start hidden */
-    filter: blur(20px);      /* ⭐ start blur */
-
-    animation: welcomeEntry 1.5s ease forwards;
-    transition: opacity 1.5s ease, filter 1.5s ease;
+    animation: introFadeIn 2s ease forwards;
 }
 
-@keyframes welcomeEntry {
-    from {
-        opacity: 0;
-        transform: scale(1.1);
-        filter: blur(20px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-        filter: blur(0px);
-    }
+@keyframes introFadeIn{
+    from {opacity: 0; transform: scale(1.1);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+.content{
+    color: white;
+    z-index: 2;
+}
+
+.line1{
+    font-size: 3rem;
+    color: gold;
+    opacity: 0;
+    animation: reveal 2s ease forwards;
+}
+
+.line2{
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: reveal 2s ease forwards;
+    animation-delay: 1.5s;
+}
+
+.line3{
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: reveal 2s ease forwards;
+    animation-delay: 3s;
+}
+
+@keyframes reveal{
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+#particleCanvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
         .diyas{
     position: fixed;
@@ -516,12 +544,19 @@
     </style>
 </head>
 <body>
-    <div id="welcomeScreen">
-    <div class="welcome-content">
+  <div id="introScreen">
+    <div class="content">
         <h1 class="line1">💖 Praful ❤️ Nisha 💖</h1>
-        <p class="line2">वाघ परिवार आपले सहर्ष स्वागत आहे</p>
-        <p class="line3">आमच्या आनंदाच्या या अविस्मरणीय क्षणांचे साक्षीदार होऊन आपल्या शुभेच्छांचा वर्षाव करावा.</p>
+        <p class="line2">Wedding Invitation</p>
+        <p class="line3">With Love & Blessings</p>
     </div>
+
+    <!-- Music -->
+    <audio id="bgMusic" src="music.mp3"></audio>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+</div>
 </div>
     <div class="diyas">
     <div class="diya">🪔</div>
@@ -873,19 +908,70 @@ setTimeout(() => {
 }, 10000);
 
 
-// Welcome screen blur fade
-setTimeout(() => {
-    const screen = document.getElementById("welcomeScreen");
+const canvas = document.getElementById("particleCanvas");
+const ctx = canvas.getContext("2d");
 
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+function createParticles(){
+    for(let i=0;i<80;i++){
+        particles.push({
+            x: Math.random()*canvas.width,
+            y: Math.random()*canvas.height,
+            r: Math.random()*3 + 1,
+            dx: (Math.random()-0.5)*2,
+            dy: (Math.random()-0.5)*2
+        });
+    }
+}
+
+function animateParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    particles.forEach(p=>{
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if(p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if(p.y < 0 || p.y > canvas.height) p.dy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle = "rgba(255,215,0,0.7)";
+        ctx.fill();
+    });
+
+    requestAnimationFrame(animateParticles);
+}
+
+createParticles();
+animateParticles();
+
+
+// 🎵 MUSIC SYNC START
+window.addEventListener("load", () => {
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.5;
+    music.play();
+});
+
+
+// ⏳ EXIT FADE AFTER 10 SEC
+setTimeout(() => {
+    const screen = document.getElementById("introScreen");
+
+    screen.style.transition = "opacity 2s ease, filter 2s ease";
     screen.style.opacity = "0";
     screen.style.filter = "blur(10px)";
-    screen.style.transform = "scale(0.95)";
 
     setTimeout(() => {
         screen.style.display = "none";
-    }, 1500);
+    }, 2000);
 
-}, 8000);
+}, 10000);
     </script>
 </body>
 </html>
