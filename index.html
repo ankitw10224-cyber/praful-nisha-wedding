@@ -451,19 +451,21 @@ style="width:100%; height:450px; object-fit:contain; object-position:top; border
         window.addEventListener("DOMContentLoaded", revealSections); // Initial check
 
         // Flower Petals Generator
-        const petalsContainer = document.getElementById("petals");
-        const flowerEmojis = ["🌸", "🌹", "🌼"];
-        
-        for (let i = 0; i < 35; i++) {
-            let petal = document.createElement("div");
-            petal.classList.add("petal");
-            petal.innerHTML = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
-            petal.style.left = Math.random() * 100 + "%";
-            petal.style.animationDuration = (6 + Math.random() * 8) + "s";
-            petal.style.animationDelay = (Math.random() * 5) + "s";
-            petal.style.fontSize = (14 + Math.random() * 12) + "px";
-            petalsContainer.appendChild(petal);
-        }
+       const petalsContainer = document.getElementById("petals");
+const flowerEmojis = ["🌹"];
+
+for (let i = 0; i < 35; i++) {
+    let petal = document.createElement("div");
+    petal.classList.add("petal");
+    petal.innerHTML = flowerEmojis[0];
+
+    petal.style.left = Math.random() * 100 + "%";
+    petal.style.animationDuration = (6 + Math.random() * 8) + "s";
+    petal.style.animationDelay = (Math.random() * 5) + "s";
+    petal.style.fontSize = (14 + Math.random() * 12) + "px";
+
+    petalsContainer.appendChild(petal);
+}
     </script>
 </body>
 </html>
