@@ -886,6 +886,11 @@ animateFireworks();
 
 const fwInterval = setInterval(createFirework, 1200);
 
+// stop after 8 seconds
+setTimeout(() => {
+    clearInterval(fwInterval);
+}, 8000);
+
 /* 4 सेकंदानंतर बंद */
 window.addEventListener("load", () => {
 
