@@ -9,6 +9,56 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
+        .section{
+    padding:20px 10px;
+}
+
+.title{
+    text-align:center;
+    color:#ffd700;
+    margin-bottom:15px;
+}
+
+/* MAIN BLOCK (IMPORTANT) */
+.namra-columns{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    width:90%;
+    margin:auto;
+    padding:20px;
+    background:#1f0b12;
+    border-radius:15px;
+    box-sizing:border-box;
+}
+
+/* COLUMNS */
+.left-column,
+.right-column{
+    flex:1;
+    min-width:0;
+}
+
+/* TEXT CONTROL */
+.left-column p,
+.right-column p{
+    margin:6px 0;
+    line-height:1.4;
+    word-break:break-word;
+}
+
+/* MOBILE FIX */
+@media (max-width:768px){
+    .namra-columns{
+        flex-direction:column;
+        width:95%;
+    }
+
+    .left-column,
+    .right-column{
+        width:100%;
+    }
+}
         .kilbil-family{
     text-align:center;
     padding:30px 20px;
@@ -285,6 +335,53 @@
         font-size: 13px;
     }
 }
+        .namra-columns{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.namra-columns .left-column,
+.namra-columns .right-column{
+    width: 49%;
+}
+
+.namra-columns .left-column{
+    text-align: left;
+}
+
+.namra-columns .right-column{
+    text-align: right;
+}
+
+.namra-columns p{
+    margin: 6px 0;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+/* Mobile */
+@media (max-width:768px){
+
+    .namra-columns{
+        display: flex;
+        justify-content: space-between;
+        gap: 6px;
+    }
+
+    .namra-columns .left-column,
+    .namra-columns .right-column{
+        width: 49%;
+    }
+
+    .namra-columns p{
+        font-size: 9px;
+        line-height: 1.3;
+        white-space: nowrap;
+    }
+}
+
         body {
             font-family: 'Poppins', sans-serif;
             background: #4b0f1f;
@@ -696,20 +793,75 @@
             <p>ची. ओम सचिनशेठ वाघ</p>
             <p>ची. अवनीत अविनाशशेठ वाघ</p>
         </div>
-    </section>
-        <div class="card family-columns">
-    <h2>संयोजक</h2>
 
-    <div class="left-column">
-        <p>श्री. राहुल सुधाकरशेठ कुलकर्णी - पुणे</p>
-        <p>श्री. दिलीप बापूशेठ अहिराव - सुरत</p>
     </div>
+</section>
+    <section class="section">
+    <h2 class="title">संयोजक</h2>
 
-    <div class="right-column">
-        <p>श्री. मनीष गजाननशेठ वानखेडे - सुरत</p>
-        <p>श्री. कृष्णा सुनिलशेठ जडे - धुळे</p>
+    <div class="card family-columns">
+
+        <div class="left-column">
+            <p>श्री. राहुल सुधाकरशेठ कुलकर्णी - पुणे</p>
+            <p>श्री. दिलीप बापूशेठ अहिराव - सुरत</p>
+        </div>
+
+        <div class="right-column">
+            <p>श्री. मनीष गजाननशेठ वानखेडे - सुरत</p>
+            <p>श्री. कृष्णा सुनिलशेठ जडे - धुळे</p>
+        </div>
+
     </div>
-</div>
+</section>
+    <section class="section">
+    <h2 class="title">प्रेषक</h2>
+
+    <div class="card family-columns">
+
+        <div class="left-column">
+            <p>श्री. रामचंद्र धनाजीशेठ अहिराव - जळगाव</p>
+            <p>श्री. चंद्रकांत मगनशेठ अहिराव - सेल्वास</p>
+            <p>श्री. दत्तात्रय पांडुरंगशेठ जाधव - पुणे</p>
+            
+        </div>
+
+        <div class="right-column">
+            <p>श्री. सुनील कल्याणशेठ जडे - धुळे</p>
+            <p>श्री. बापू रघुनाथशेठ विसपुते - धुळे</p>
+            
+        </div>
+
+    </div>
+</section>
+    <section class="section">
+    <h2 class="title">व्यवस्थापक</h2>
+
+    <div class="card family-columns">
+
+        <div class="left-column">
+            <p>श्री. राकेश निंबा चव्हाण - सुरत</p>
+        </div>
+
+        <div class="right-column">
+            <p>श्री. मुकेश निंबा चव्हाण - सुरत</p>
+        </div>
+
+    </div>
+</section>
+    <section class="section">
+    <h2 class="title">कार्यवाहक</h2>
+
+    <div class="card family-columns">
+
+        <div class="left-column">
+            <p>श्री. कुणाल दिलीप अहिराव -सुरत</p>
+            <p>श्री. हर्षल दिलीप अहिराव - सुरत</p>
+        </div>
+
+        <div class="right-column">
+            <p>श्री. ओम राकेश चव्हाण - पुणे</p>
+            <p>श्री. साई राकेश चव्हाण - पुणे</p>
+        </div>
 
     </div>
 </section>
