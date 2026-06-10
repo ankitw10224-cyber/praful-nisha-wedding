@@ -242,93 +242,52 @@
             scroll-behavior: smooth;
         }
         .family-columns{
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:6px;
+}
+
+.left-column,
+.right-column{
+    width:49%;
 }
 
 .left-column{
-    width: 48%;
-    text-align: left;
+    text-align:left;
 }
 
 .right-column{
-    width: 48%;
-    text-align: right;
+    text-align:right;
 }
 
 .left-column p,
 .right-column p{
-    font-size: 14px;
-    white-space: nowrap;
-}
-
-@media (max-width:768px){
-    .family-columns{
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-    }
-
-    .left-column{
-        width: 48%;
-        text-align: left;
-    }
-
-    .right-column{
-        width: 48%;
-        text-align: right;
-    }
-
-    .left-column p,
-    .right-column p{
-        font-size: 13px;
-    }
-}
-        .namra-columns{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 15px;
-}
-
-.namra-columns .left-column,
-.namra-columns .right-column{
-    width: 49%;
-}
-
-.namra-columns .left-column{
-    text-align: left;
-}
-
-.namra-columns .right-column{
-    text-align: right;
-}
-
-.namra-columns p{
-    margin: 6px 0;
-    line-height: 1.4;
-    font-size: 14px;
+    margin:6px 0;
+    line-height:1.4;
+    font-size:14px;
+    white-space:nowrap;
 }
 
 /* Mobile */
 @media (max-width:768px){
 
-    .namra-columns{
-        display: flex;
-        justify-content: space-between;
-        gap: 6px;
+    .family-columns{
+        display:flex;
+        justify-content:space-between;
+        gap:4px;
     }
 
-    .namra-columns .left-column,
-    .namra-columns .right-column{
-        width: 49%;
+    .left-column,
+    .right-column{
+        width:49%;
     }
 
-    .namra-columns p{
-        font-size: 6px;
-        line-height: 1.3;
-        white-space: nowrap;
+    .left-column p,
+    .right-column p{
+        font-size:8px;
+        line-height:1.3;
+        white-space:nowrap;
     }
 }
 
