@@ -285,50 +285,31 @@
         font-size: 13px;
     }
 }
-        .namra-columns{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 15px;
+       .namra-columns,
+.family-columns{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
 }
 
-.namra-columns .left-column,
-.namra-columns .right-column{
-    width: 49%;
+.left-column,
+.right-column{
+    flex:1;
+    min-width:200px;
+    box-sizing:border-box;
 }
 
-.namra-columns .left-column{
-    text-align: left;
-}
-
-.namra-columns .right-column{
-    text-align: right;
-}
-
-.namra-columns p{
-    margin: 6px 0;
-    line-height: 1.4;
-    font-size: 14px;
-}
-
-/* Mobile */
+/* MOBILE FIX */
 @media (max-width:768px){
-
-    .namra-columns{
-        display: flex;
-        justify-content: space-between;
-        gap: 6px;
+    .namra-columns,
+    .family-columns{
+        flex-direction:column;
     }
 
-    .namra-columns .left-column,
-    .namra-columns .right-column{
-        width: 49%;
-    }
-
-    .namra-columns p{
-        font-size: 9px;
-        line-height: 1.3;
-        white-space: nowrap;
+    .left-column,
+    .right-column{
+        width:100%;
     }
 }
 
@@ -743,6 +724,19 @@
             <p>ची. ओम सचिनशेठ वाघ</p>
             <p>ची. अवनीत अविनाशशेठ वाघ</p>
         </div>
+        <div class="card family-columns">
+    <h2>संयोजक</h2>
+
+    <div class="left-column">
+        <p>श्री. राहुल सुधाकरशेठ कुलकर्णी - पुणे</p>
+        <p>श्री. दिलीप बापूशेठ अहिराव - सुरत</p>
+    </div>
+
+    <div class="right-column">
+        <p>श्री. मनीष गजाननशेठ वानखेडे - सुरत</p>
+        <p>श्री. कृष्णा सुनिलशेठ जडे - धुळे</p>
+    </div>
+</div>
 
     </div>
 </section>
