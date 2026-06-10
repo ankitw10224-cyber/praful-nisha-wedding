@@ -334,14 +334,10 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-    color: white;
-
-    background: url('background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+            background: #4b0f1f;
+            color: white;
+            overflow-x: hidden;
+        }
         .bappa-img{
     width:100%;
     height:450px;
@@ -357,15 +353,15 @@
 }
 
         body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.25);
-    z-index: -1;
-}
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top, #8d1838, #3b0716);
+            z-index: -2;
+        }
 
         .hero {
             height: 100vh;
