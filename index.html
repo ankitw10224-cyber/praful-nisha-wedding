@@ -9,31 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
-        background-image:url('images/floral-bg.jpg');
-        .floral-top{
-    position:fixed;
-    top:0;
-    right:0;
-    width:350px;
-    height:350px;
-    background:url('https://pngimg.com/uploads/flowers/flowers_PNG102.png');
-    background-size:contain;
-    background-repeat:no-repeat;
-    z-index:-1;
-}
-
-.floral-bottom{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:350px;
-    height:350px;
-    background:url('https://pngimg.com/uploads/flowers/flowers_PNG102.png');
-    background-size:contain;
-    background-repeat:no-repeat;
-    transform:rotate(180deg);
-    z-index:-1;
-}
         .kilbil-family{
     text-align:center;
     padding:30px 20px;
@@ -358,20 +333,11 @@
 }
 
         body {
-            background:url('floral-bg.jpg');
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
-}
-            font-family:'Poppins',sans-serif;
-    background-image:url('floral-bg.jpg');
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    background-attachment:fixed;
-    color:white;
-    overflow-x:hidden;
-}
+            font-family: 'Poppins', sans-serif;
+            background: #4b0f1f;
+            color: white;
+            overflow-x: hidden;
+        }
         .bappa-img{
     width:100%;
     height:450px;
@@ -386,32 +352,26 @@
     }
 }
 
-        body::body::before{
-    content:"";
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1920') center center/cover;
-    opacity:0.35;
-    z-index:-2;
-}
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top, #8d1838, #3b0716);
+            z-index: -2;
+        }
 
         .hero {
-            min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-    background:rgba(255,255,255,.45);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    border-radius:30px;
-    margin:20px;
-}
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
 
         .hero h1 {
             font-family: 'Cinzel', serif;
@@ -464,20 +424,24 @@
         }
 
         .title {
-            font-size:2.5rem;
-    color:#6f7d5f;
-    margin-bottom:25px;
-    text-align:center;
-    font-family:'Cinzel', serif;
-}
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 25px;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+        }
 
         .card {
-                background:rgba(168,181,154,0.85);
-        backdrop-filter:blur(10px);
-        -webkit-backdrop-filter:blur(15px);
-        color:white;
-        border-radius:35px;
-    }
+            background: rgba(255, 255, 255, .08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
 
         .gallery {
             display: grid;
@@ -627,9 +591,6 @@
     </style>
 </head>
 <body>
-    <div class="floral-top"></div>
-<div class="floral-bottom"></div>
-    
     <div id="welcomeScreen">
     <div class="welcome-content">
         <h1 class="line1">💖 Praful ❤️ Nisha 💖</h1>
