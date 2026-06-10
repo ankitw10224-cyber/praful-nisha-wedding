@@ -334,10 +334,10 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: #4b0f1f;
-            color: white;
-            overflow-x: hidden;
-        }
+    background: linear-gradient(135deg,#f5f5f0,#e7ecdf,#d9e2cf);
+    color: #4d4d4d;
+    overflow-x: hidden;
+}
         .bappa-img{
     width:100%;
     height:450px;
@@ -352,26 +352,32 @@
     }
 }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top, #8d1838, #3b0716);
-            z-index: -2;
-        }
+        body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') center center/cover;
+    opacity:0.12;
+    z-index:-2;
+}
 
         .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
+            min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+    background:rgba(255,255,255,.45);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-radius:30px;
+    margin:20px;
+}
 
         .hero h1 {
             font-family: 'Cinzel', serif;
@@ -424,24 +430,22 @@
         }
 
         .title {
-            font-size: 2.5rem;
-            color: #ffd700;
-            margin-bottom: 25px;
-            text-align: center;
-            font-family: 'Cinzel', serif;
-        }
+            font-size:2.5rem;
+    color:#6f7d5f;
+    margin-bottom:25px;
+    text-align:center;
+    font-family:'Cinzel', serif;
+}
 
         .card {
-            background: rgba(255, 255, 255, .08);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            margin-top: 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-        }
+            background:#aab59a;
+    color:white;
+    border-radius:35px;
+    padding:30px;
+    margin-top:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+    border:none;
+}
 
         .gallery {
             display: grid;
