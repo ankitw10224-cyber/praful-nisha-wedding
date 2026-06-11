@@ -45,77 +45,109 @@
     color:white;
     font-size:16px;
 }
-        .line1, .line2, .line3 {
-    opacity: 0;
-    transform: translateY(25px);
-    animation: textIn 1s ease forwards;
-}
-
-.line1 { animation-delay: 0.6s; }
-.line2 { animation-delay: 1.4s; }
-.line3 { animation-delay: 2.2s; }
-
-@keyframes textIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
         #welcomeScreen{
-    padding: 10px;
-    overflow: hidden;
+    position:fixed;
+    inset:0;
+    background:#000;
+    overflow:hidden;
+    z-index:99999;
+    transition: opacity 2s ease;
+            
 }
-       #welcomeScreen{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle,#4b0f1f,#12050a);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 99999;
+        .left-door,.right-door{
+    position:fixed;
+    top:0;
+    width:50%;
+    height:100%;
+    z-index:100000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-    opacity: 0;
-    transform: scale(1.1);
-    filter: blur(20px);
+    background:linear-gradient(135deg,#4a3200,#d4af37,#4a3200);
 
-    animation: welcomeEntry 2s ease forwards;
+    border:3px solid #ffd700;
+
+    box-shadow:
+        inset 0 0 50px rgba(255,215,0,.3),
+        0 0 30px rgba(255,215,0,.4);
+
+    transition: transform 4s ease-in-out;
+}
+.left-door{left:0;}
+.right-door{right:0;}
+
+.door-content{
+    text-align:center;
+    padding:20px;
+    color:white;
+    width:90%;
+    max-width:280px;
 }
 
-@keyframes welcomeEntry{
-    to{
-        opacity: 1;
-        transform: scale(1);
-        filter: blur(0px);
+.parents-photo{
+width:180px;
+height:180px;
+border-radius:50%;
+object-fit:cover;
+border:5px solid gold;
+margin-bottom:15px;
+box-shadow:0 0 25px gold;
+}
+
+.om-symbol{
+position:absolute;
+top:40%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:120px;
+color:#ffd700;
+z-index:100000;
+animation:omFade 3s ease forwards;
+}
+
+@keyframes omFade{
+0%{opacity:0;transform:translate(-50%,-50%) scale(.5);}
+30%{opacity:1;}
+100%{opacity:0;transform:translate(-50%,-50%) scale(1.3);}
+}
+
+.door-light{
+position:absolute;
+left:50%;
+top:0;
+height:100%;
+width:0;
+transform:translateX(-50%);
+background:radial-gradient(circle,#ffd700,transparent);
+filter:blur(40px);
+z-index:100001;
+}
+        @media (max-width: 768px){
+
+   .parents-photo{
+        width:120px;
+        height:120px;
+    }
+
+    .door-content h3{
+        font-size:1.1rem;
+    }
+
+    .door-content p{
+        font-size:0.8rem;
+        line-height:1.5;
+    }
+
+    .om-symbol{
+        font-size:70px;
+    }
+
+    .door-content{
+        padding:10px;
     }
 }
-
-.welcome-content{
-    padding: 20px;
-    max-width: 90%;
-}
-
-.line1{
-    font-size: clamp(1.8rem, 6vw, 3rem);
-    word-break: break-word;
-}
-
-.line2{
-    font-size: clamp(1rem, 4.5vw, 1.4rem);
-}
-
-.line3{
-    font-size: clamp(0.9rem, 4vw, 1.2rem);
-    padding: 0 10px;
-}
-
-@keyframes textReveal{
-    from{opacity:0; transform: translateY(30px);}
-    to{opacity:1; transform: translateY(0);}
-}
+        
         .diyas{
     position: fixed;
     bottom: 10px;
@@ -591,12 +623,34 @@
     </style>
 </head>
 <body>
-    <div id="welcomeScreen">
-    <div class="welcome-content">
-        <h1 class="line1">💖 Praful ❤️ Nisha 💖</h1>
-        <p class="line2">वाघ परिवारा तर्फे आपले सहर्ष स्वागत </p>
-        <p class="line3">प्रेम आणि आशीर्वादांनी भरलेल्या या शुभ क्षणांचे आपण साक्षीदार व्हावे.</p>
+    
+<div id="welcomeScreen">
+
+    <audio id="shankhSound">
+        <source src="Mahabharat Shankh.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="om-symbol">🕉️</div>
+
+    <div class="door left-door">
+        <div class="door-content">
+            <img src="parents.jpg" class="parents-photo">
+            <h3>सहर्ष आमंत्रण</h3>
+            <p>श्री. पंकज प्रभाकर वाघ</p>
+            <p>सौ. रेखा पंकज वाघ</p>
+        </div>
     </div>
+
+    <div class="door right-door">
+        <div class="door-content">
+            <img src="bride.jpg" class="parents-photo">
+            <h3>सहर्ष आमंत्रण</h3>
+            <p>वधूपक्ष</p>
+        </div>
+    </div>
+
+    <div class="door-light"></div>
+
 </div>
 
 <audio id="bgMusic" src="music.mp3"></audio>
@@ -1089,33 +1143,41 @@ setTimeout(() => {
 }, 8000);
 
 /* 4 सेकंदानंतर बंद */
-window.addEventListener("load", () => {
+window.addEventListener("load",()=>{
 
-    const screen = document.getElementById("welcomeScreen");
-    const music = document.getElementById("bgMusic");
+const shankh=document.getElementById("shankhSound");
+const screen=document.getElementById("welcomeScreen");
 
-    // 🎵 MUSIC START (sync with entry)
-    setTimeout(() => {
-        music.volume = 0.5;
-        music.play().catch(()=> {
-            console.log("User interaction required for music");
-        });
-    }, 1000);
+setTimeout(()=>{
+shankh.play().catch(()=>{});
+},1000);
 
-    // 🎬 EXIT AFTER 8 SEC (cinematic fade + blur + zoom)
-    setTimeout(() => {
+setTimeout(()=>{
 
-        screen.style.transition = "opacity 2s ease, filter 2s ease, transform 2s ease";
+document.querySelector(".left-door").style.transition="4s";
+document.querySelector(".right-door").style.transition="4s";
 
-        screen.style.opacity = "0";
-        screen.style.filter = "blur(15px)";
-        screen.style.transform = "scale(0.95)";
+document.querySelector(".left-door").style.transform=
+"translateX(-100%)";
 
-        setTimeout(() => {
-            screen.style.display = "none";
-        }, 2000);
+document.querySelector(".right-door").style.transform=
+"translateX(100%)";
 
-    }, 4000);
+document.querySelector(".door-light").style.transition="4s";
+document.querySelector(".door-light").style.width="350px";
+
+},5000);
+
+setTimeout(()=>{
+
+screen.style.transition="2s";
+screen.style.opacity="0";
+
+setTimeout(()=>{
+screen.style.display="none";
+},2000);
+
+},11000);
 
 });
     </script>
