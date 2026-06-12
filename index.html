@@ -96,12 +96,12 @@
 }
 
 .om-symbol{
-    position:absolute;
-    top:40%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    z-index:100000;
-    animation:omFade 3s ease forwards;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100001;
+    animation: omFade 3s ease forwards;
 }
         .om-symbol img{
     width:120px;
@@ -112,9 +112,17 @@
 }
 
 @keyframes omFade{
-0%{opacity:0;transform:translate(-50%,-50%) scale(.5);}
-30%{opacity:1;}
-100%{opacity:0;transform:translate(-50%,-50%) scale(1.3);}
+    0%{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(0.4);
+    }
+    40%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(1.4);
+    }
 }
 
 .door-light{
@@ -659,8 +667,6 @@ z-index:100001;
     <div class="door-light"></div>
 
 </div>
-
-<audio id="bgMusic" src="music.mp3"></audio>
 </div>
     <div class="diyas">
     <div class="diya">🪔</div>
