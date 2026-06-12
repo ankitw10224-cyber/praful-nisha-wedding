@@ -1238,49 +1238,47 @@ window.addEventListener("load", () => {
   const shankh = document.getElementById("shankhSound");
   const screen = document.getElementById("welcomeScreen");
 
- function startIntro() {
+  function startIntro() {
 
-  shankh.play().catch(err => console.log("Audio blocked:", err));
+    shankh.play().catch(err => console.log("Audio blocked:", err));
 
-  // 🔥 STEP 1: smoke FIRST
-  document.querySelector(".smoke").classList.add("show");
-
-  // 🔥 STEP 2: OM symbol after 1.5s
-  setTimeout(() => {
-    document.querySelector(".om-symbol").classList.add("show");
-  }, 1500);
-
-  // 🔥 STEP 3: doors open AFTER OM
-  setTimeout(() => {
-    document.querySelector(".left-door").style.transition = "4s";
-    document.querySelector(".right-door").style.transition = "4s";
-
-    document.querySelector(".left-door").style.transform = "translateX(-100%)";
-    document.querySelector(".right-door").style.transform = "translateX(100%)";
-
-    document.querySelector(".door-light").style.transition = "4s";
-    document.querySelector(".door-light").style.width = "350px";
-  }, 2500);
-
-  // 🔥 STEP 4: stop sound after 15s
-  setTimeout(() => {
-    shankh.pause();
-    shankh.currentTime = 0;
-  }, 15000);
-
-  // 🔥 STEP 5: hide welcome screen after animation
-  setTimeout(() => {
-    screen.style.transition = "2s";
-    screen.style.opacity = "0";
+    document.querySelector(".smoke").classList.add("show");
 
     setTimeout(() => {
-      screen.style.display = "none";
-    }, 2000);
+      document.querySelector(".om-symbol").classList.add("show");
+    }, 1500);
 
-  }, 7000);
+    setTimeout(() => {
 
-  screen.removeEventListener("click", startIntro);
-}
+      document.querySelector(".left-door").style.transform = "translateX(-100%)";
+      document.querySelector(".right-door").style.transform = "translateX(100%)";
+
+      document.querySelector(".door-light").style.width = "350px";
+
+    }, 2500);
+
+    // ⛔ REMOVE old fixed 7 sec timeout
+    // ✅ instead hide AFTER full animation
+
+    setTimeout(() => {
+
+      shankh.pause();
+      shankh.currentTime = 0;
+
+      screen.style.transition = "opacity 2s ease";
+      screen.style.opacity = "0";
+
+      setTimeout(() => {
+        screen.style.display = "none";
+      }, 2000);
+
+    }, 6000); // 👈 adjusted timing (important)
+
+    screen.removeEventListener("click", startIntro);
+  }
+
+  screen.addEventListener("click", startIntro);
+});
 
 // click trigger
 screen.addEventListener("click", startIntro);
