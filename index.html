@@ -660,45 +660,54 @@ z-index:100001;
             }
         }
         .smoke{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:100001;
-    opacity:0;
-    background:
-      radial-gradient(circle at 50% 70%,
-      rgba(255,255,255,.25),
-      transparent 60%);
-            
-    filter: blur(60px);
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 300px;
+    pointer-events: none;
+    z-index: 100000; /* OM पेक्षा कमी */
+    opacity: 0;
+}
+
+.smoke::before,
+.smoke::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:50%;
+    width:80px;
+    height:160px;
+    background:rgba(255,255,255,0.15);
+    border-radius:50%;
+    filter:blur(25px);
 }
 
 .smoke.show{
-    animation: smokeGlow 5s ease forwards;
+    opacity:1;
 }
 
-@keyframes smokeGlow{
+.smoke.show::before{
+    animation:smokeRise 5s linear forwards;
+}
+
+.smoke.show::after{
+    animation:smokeRise 5s linear .7s forwards;
+}
+
+@keyframes smokeRise{
     0%{
+        transform:translate(-50%,0) scale(.4);
         opacity:0;
-        transform:scale(.8);
     }
-    40%{
-        opacity:1;
+    20%{
+        opacity:.4;
     }
     100%{
+        transform:translate(-30%,-280px) scale(2);
         opacity:0;
-        transform:scale(1.4);
     }
-}
-
-.smoke.show{
-    animation: smokeGlow 5s ease forwards;
-}
-
-@keyframes smokeGlow{
-    0%{opacity:0;}
-    30%{opacity:1;}
-    100%{opacity:0;}
 }
     </style>
 </head>
