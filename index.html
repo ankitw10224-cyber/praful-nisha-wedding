@@ -1240,45 +1240,61 @@ window.addEventListener("load", () => {
 
   function startIntro() {
 
-  shankh.play().catch(err => console.log("Audio blocked:", err));
+    try {
 
-  // STEP 1: DOORS OPEN FIRST
-  setTimeout(() => {
-    document.querySelector(".left-door").style.transform = "translateX(-100%)";
-    document.querySelector(".right-door").style.transform = "translateX(100%)";
+      shankh.play().catch(() => {});
 
-    document.querySelector(".door-light").style.width = "350px";
-  }, 500);
+      // STEP 1: doors open
+      setTimeout(() => {
+        const left = document.querySelector(".left-door");
+        const right = document.querySelector(".right-door");
+        const light = document.querySelector(".door-light");
 
-  // STEP 2: OM APPEARS AFTER DOORS
-  setTimeout(() => {
-    document.querySelector(".om-symbol").classList.add("show");
-  }, 2500);
+        if (left) left.style.transform = "translateX(-100%)";
+        if (right) right.style.transform = "translateX(100%)";
+        if (light) light.style.width = "350px";
 
-  // STEP 3: SMOKE AFTER OM (SLOW MOTION FEEL)
-  setTimeout(() => {
-    document.querySelector(".smoke").classList.add("show");
-  }, 4000);
+      }, 500);
 
-  // STEP 4: STOP SOUND
-  setTimeout(() => {
-    shankh.pause();
-    shankh.currentTime = 0;
-  }, 15000);
+      // STEP 2: OM
+      setTimeout(() => {
+        const om = document.querySelector(".om-symbol");
+        if (om) om.classList.add("show");
+      }, 2500);
 
-  // STEP 5: CLOSE WELCOME SCREEN
-  setTimeout(() => {
-    screen.style.transition = "opacity 2s ease";
-    screen.style.opacity = "0";
+      // STEP 3: SMOKE (after OM)
+      setTimeout(() => {
+        const smoke = document.querySelector(".smoke");
+        if (smoke) smoke.classList.add("show");
+      }, 4000);
 
-    setTimeout(() => {
-      screen.style.display = "none";
-    }, 2000);
+      // STEP 4: hide screen
+      setTimeout(() => {
+        screen.style.opacity = "0";
 
-  }, 8000);
+        setTimeout(() => {
+          screen.style.display = "none";
+        }, 2000);
 
-  screen.removeEventListener("click", startIntro);
-}
+      }, 8000);
+
+      // STEP 5: stop sound
+      setTimeout(() => {
+        shankh.pause();
+        shankh.currentTime = 0;
+      }, 15000);
+
+    } catch (e) {
+      console.log("Intro error:", e);
+    }
+
+    screen.removeEventListener("click", startIntro);
+  }
+
+  if (screen) {
+    screen.addEventListener("click", startIntro);
+  }
+});
 // click trigger
 screen.addEventListener("click", startIntro);
     </script>
