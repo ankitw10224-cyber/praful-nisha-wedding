@@ -371,6 +371,37 @@ z-index:100001;
         white-space: nowrap;
     }
 }
+        .enter-btn{
+    position:absolute;
+    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+    padding:15px 30px;
+    border:none;
+    border-radius:40px;
+    background:linear-gradient(135deg,#ffd700,#ffb700);
+    color:#4b0f1f;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    z-index:100002;
+    box-shadow:0 0 20px gold;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:translateX(-50%) scale(1);}
+    50%{transform:translateX(-50%) scale(1.08);}
+    100%{transform:translateX(-50%) scale(1);}
+}
+
+@media(max-width:768px){
+    .enter-btn{
+        font-size:14px;
+        padding:12px 20px;
+        bottom:25px;
+    }
+}
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -660,9 +691,13 @@ z-index:100001;
     </div>
 
     <div class="door-light"></div>
+    
+    <button id="enterBtn" class="enter-btn">
+        🕉️ प्रवेश करण्यासाठी येथे क्लिक करा
+    </button>
 
 </div>
-</div>
+    
     <div class="diyas">
     <div class="diya">🪔</div>
     <div class="diya">🪔</div>
