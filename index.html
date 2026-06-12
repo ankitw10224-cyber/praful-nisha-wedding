@@ -659,6 +659,27 @@ z-index:100001;
                 padding: 60px 5%;
             }
         }
+        .smoke{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:100000;
+    background:
+    radial-gradient(circle at center,
+    rgba(255,215,0,.25),
+    transparent 70%);
+    opacity:0;
+}
+
+.smoke.show{
+    animation: smokeGlow 5s ease forwards;
+}
+
+@keyframes smokeGlow{
+    0%{opacity:0;}
+    30%{opacity:1;}
+    100%{opacity:0;}
+}
     </style>
 </head>
 <body>
@@ -691,6 +712,7 @@ z-index:100001;
     </div>
 
     <div class="door-light"></div>
+    <div class="smoke"></div>
     
     <button id="enterBtn" class="enter-btn">
         🕉️ प्रवेश करण्यासाठी येथे क्लिक करा
@@ -1195,6 +1217,7 @@ window.addEventListener("load", () => {
 
     // play sound
     shankh.play().catch(err => console.log("Audio blocked:", err));
+      document.querySelector(".smoke").classList.add("show");
 
       setTimeout(() => {
         shankh.pause();
