@@ -662,13 +662,13 @@ z-index:100001;
     .smoke{
     position:fixed;
     left:50%;
-    top:50%;
+    top:55%;
     width:200px;
     height:200px;
     transform:translate(-50%,-50%);
-    background:red;
-    opacity:1;
-    z-index:999999;
+    pointer-events:none;
+    z-index:100000;
+    opacity:0;
 }
 
 .smoke::before,
@@ -677,40 +677,34 @@ z-index:100001;
     position:absolute;
     bottom:0;
     left:50%;
-    width:80px;
-    height:220px;
-    background:radial-gradient(
-        ellipse at center,
-        rgba(255,255,255,.18) 0%,
-        rgba(255,255,255,.08) 35%,
-        transparent 75%
-    );
-    filter:blur(22px);
-}
-
-.smoke::before{
-    animation:smokeRise1 6s linear infinite;
-}
-
-.smoke::after{
-    animation:smokeRise2 7s linear infinite;
-    animation-delay:1s;
+    width:120px;
+    height:120px;
+    transform:translateX(-50%);
+    background:radial-gradient(circle,
+        rgba(255,255,255,0.6),
+        rgba(255,255,255,0.2),
+        transparent 70%);
+    filter:blur(25px);
+    border-radius:50%;
 }
 
 .smoke.show{
     opacity:1;
+    animation:smokeRise 4s ease-out forwards;
 }
 
-@keyframes smokeRise1{
-    0%{transform:translate(-50%,0) scale(.6);opacity:0;}
-    20%{opacity:.5;}
-    100%{transform:translate(-80%,-220px) scale(1.5);opacity:0;}
-}
-
-@keyframes smokeRise2{
-    0%{transform:translate(-50%,0) scale(.5);opacity:0;}
-    20%{opacity:.4;}
-    100%{transform:translate(-20%,-240px) scale(1.8);opacity:0;}
+@keyframes smokeRise{
+    0%{
+        transform:translate(-50%,-50%) scale(0.5);
+        opacity:0;
+    }
+    30%{
+        opacity:1;
+    }
+    100%{
+        transform:translate(-50%,-180%) scale(2);
+        opacity:0;
+    }
 }
     </style>
 </head>
@@ -1244,52 +1238,52 @@ window.addEventListener("load", () => {
   const shankh = document.getElementById("shankhSound");
   const screen = document.getElementById("welcomeScreen");
 
-  function startIntro() {
-      console.log("Intro Started");
+ function startIntro() {
 
-    // play sound
-    shankh.play().catch(err => console.log("Audio blocked:", err));
-      document.querySelector(".smoke").classList.add("show");
+  shankh.play().catch(err => console.log("Audio blocked:", err));
 
-      setTimeout(() => {
-        shankh.pause();
-        shankh.currentTime = 0;
-    }, 15000);
+  // 🔥 STEP 1: smoke FIRST
+  document.querySelector(".smoke").classList.add("show");
 
-    screen.removeEventListener("click", startIntro);
+  // 🔥 STEP 2: OM symbol after 1.5s
+  setTimeout(() => {
+    document.querySelector(".om-symbol").classList.add("show");
+  }, 1500);
 
-    // OM symbol timing
+  // 🔥 STEP 3: doors open AFTER OM
+  setTimeout(() => {
+    document.querySelector(".left-door").style.transition = "4s";
+    document.querySelector(".right-door").style.transition = "4s";
+
+    document.querySelector(".left-door").style.transform = "translateX(-100%)";
+    document.querySelector(".right-door").style.transform = "translateX(100%)";
+
+    document.querySelector(".door-light").style.transition = "4s";
+    document.querySelector(".door-light").style.width = "350px";
+  }, 2500);
+
+  // 🔥 STEP 4: stop sound after 15s
+  setTimeout(() => {
+    shankh.pause();
+    shankh.currentTime = 0;
+  }, 15000);
+
+  // 🔥 STEP 5: hide welcome screen after animation
+  setTimeout(() => {
+    screen.style.transition = "2s";
+    screen.style.opacity = "0";
+
     setTimeout(() => {
-      document.querySelector(".om-symbol").classList.add("show");
-    }, 1500);
+      screen.style.display = "none";
+    }, 2000);
 
-    // doors open
-    setTimeout(() => {
-      document.querySelector(".left-door").style.transition = "4s";
-      document.querySelector(".right-door").style.transition = "4s";
+  }, 7000);
 
-      document.querySelector(".left-door").style.transform = "translateX(-100%)";
-      document.querySelector(".right-door").style.transform = "translateX(100%)";
+  screen.removeEventListener("click", startIntro);
+}
 
-      document.querySelector(".door-light").style.transition = "4s";
-      document.querySelector(".door-light").style.width = "350px";
-    }, 1000);
-
-    // hide welcome screen
-    setTimeout(() => {
-      screen.style.transition = "2s";
-      screen.style.opacity = "0";
-
-      setTimeout(() => {
-        screen.style.display = "none";
-      }, 2000);
-
-    }, 7000);
-  }
-
-  screen.addEventListener("click", startIntro);
-
-});
+// click trigger
+screen.addEventListener("click", startIntro);
     </script>
 </body>
 </html>
