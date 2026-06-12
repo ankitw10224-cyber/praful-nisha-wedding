@@ -1150,44 +1150,48 @@ setTimeout(() => {
 }, 8000);
 
 /* 4 सेकंदानंतर बंद */
-window.addEventListener("load",()=>{
+window.addEventListener("load", () => {
 
-const shankh=document.getElementById("shankhSound");
-const screen=document.getElementById("welcomeScreen");
+  const shankh = document.getElementById("shankhSound");
+  const screen = document.getElementById("welcomeScreen");
 
-setTimeout(()=>{
-shankh.play().catch(()=>{});
-},1000);
+  function startIntro() {
 
-setTimeout(()=>{
+    // play sound
+    shankh.play().catch(err => console.log("Audio blocked:", err));
 
-document.querySelector(".left-door").style.transition="4s";
-document.querySelector(".right-door").style.transition="4s";
+    screen.removeEventListener("click", startIntro);
 
-document.querySelector(".left-door").style.transform="translateX(-100%)";
-document.querySelector(".right-door").style.transform="translateX(100%)";
+    // OM symbol timing
+    setTimeout(() => {
+      document.querySelector(".om-symbol").classList.add("show");
+    }, 1500);
 
-document.querySelector(".door-light").style.transition="4s";
-document.querySelector(".door-light").style.width="350px";
+    // doors open
+    setTimeout(() => {
+      document.querySelector(".left-door").style.transition = "4s";
+      document.querySelector(".right-door").style.transition = "4s";
 
+      document.querySelector(".left-door").style.transform = "translateX(-100%)";
+      document.querySelector(".right-door").style.transform = "translateX(100%)";
 
-// ⭐ ADD THIS HERE
-setTimeout(()=>{
-    document.querySelector(".om-symbol").classList.add("show");
-}, 1500);
+      document.querySelector(".door-light").style.transition = "4s";
+      document.querySelector(".door-light").style.width = "350px";
+    }, 1000);
 
-},5000);
+    // hide welcome screen
+    setTimeout(() => {
+      screen.style.transition = "2s";
+      screen.style.opacity = "0";
 
-setTimeout(()=>{
+      setTimeout(() => {
+        screen.style.display = "none";
+      }, 2000);
 
-screen.style.transition="2s";
-screen.style.opacity="0";
+    }, 7000);
+  }
 
-setTimeout(()=>{
-screen.style.display="none";
-},2000);
-
-},11000);
+  screen.addEventListener("click", startIntro);
 
 });
     </script>
