@@ -1156,6 +1156,7 @@ window.addEventListener("load", () => {
   const screen = document.getElementById("welcomeScreen");
 
   function startIntro() {
+      console.log("Intro Started");
 
     // play sound
     shankh.play().catch(err => console.log("Audio blocked:", err));
