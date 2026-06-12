@@ -402,6 +402,59 @@ z-index:100001;
         bottom:25px;
     }
 }
+        .smoke{
+  position: fixed;
+  left: 50%;
+  top: 60%;
+  width: 200px;
+  height: 200px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 999999; /* VERY IMPORTANT */
+  opacity: 0;
+}
+
+.smoke::before,
+.smoke::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:50%;
+  width:120px;
+  height:220px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.25),
+    rgba(255,255,255,0.08),
+    transparent 70%
+  );
+  filter: blur(25px);
+  transform: translateX(-50%);
+}
+
+.smoke.show{
+  opacity: 1;
+}
+
+.smoke.show::before{
+  animation: smoke1 6s ease-out forwards;
+}
+
+.smoke.show::after{
+  animation: smoke2 7s ease-out forwards;
+}
+
+@keyframes smoke1{
+  0%   { transform: translate(-50%, 0) scale(0.6); opacity: 0; }
+  20%  { opacity: 0.6; }
+  100% { transform: translate(-80%, -250px) scale(1.5); opacity: 0; }
+}
+
+@keyframes smoke2{
+  0%   { transform: translate(-50%, 0) scale(0.5); opacity: 0; }
+  20%  { opacity: 0.4; }
+  100% { transform: translate(-20%, -280px) scale(1.8); opacity: 0; }
+}
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -659,36 +712,7 @@ z-index:100001;
                 padding: 60px 5%;
             }
         }
-    .smoke{
-  position: fixed;
-  left: 50%;
-  top: 55%;
-  width: 200px;
-  height: 300px;
-  transform: translateX(-50%);
-  pointer-events: none;
-  z-index: 100002;
-  opacity: 0;
-}
-
-.smoke.show{
-  opacity: 1;
-  animation: smokeRise 6s ease-in-out forwards;
-}
-
-@keyframes smokeRise{
-  0%{
-    transform: translate(-50%, 50px) scale(0.6);
-    opacity: 0;
-  }
-  20%{
-    opacity: 0.6;
-  }
-  100%{
-    transform: translate(-50%, -200px) scale(1.5);
-    opacity: 0;
-  }
-}
+    
     </style>
 </head>
 <body>
