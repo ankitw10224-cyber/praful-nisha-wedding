@@ -107,33 +107,11 @@
     animation: omFade 5s ease forwards;
 }
         .om-symbol img{
-  width: 280px;
-  filter:
-    drop-shadow(0 0 10px #ffd700)
-    drop-shadow(0 0 25px #ffcc00);
-}
-
-.om-symbol.show{
-  animation: omFade 4s ease forwards;
-}
-        .door-light{
-  position:absolute;
-  left:50%;
-  top:0;
-  height:100%;
-  width:0;
-  transform:translateX(-50%);
-  background: radial-gradient(circle, rgba(255,215,0,0.6), transparent);
-  filter: blur(40px);
-  z-index: 999998;
-  transition: 3s ease;
-}
-
-@keyframes omFade{
-  0%{opacity:0; transform:scale(0.6);}
-  20%{opacity:1;}
-  80%{opacity:1;}
-  100%{opacity:0; transform:scale(1.3);}
+    width:300px;
+    height:auto;
+    display:block;
+    filter: drop-shadow(0 0 10px #ffd700)
+            drop-shadow(0 0 20px #ffcc00);
 }
 
 @keyframes omFade{
@@ -424,59 +402,6 @@ z-index:100001;
         bottom:25px;
     }
 }
-        .smoke{
-  position: fixed;
-  left: 50%;
-  top: 60%;
-  width: 220px;
-  height: 220px;
-  transform: translateX(-50%);
-  pointer-events: none;
-  z-index: 999999;
-  opacity: 0;
-}
-
-.smoke::before,
-.smoke::after{
-  content:"";
-  position:absolute;
-  bottom:0;
-  left:50%;
-  width:140px;
-  height:260px;
-  transform: translateX(-50%);
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255,255,255,0.22),
-    rgba(255,255,255,0.08),
-    transparent 75%
-  );
-  filter: blur(28px);
-}
-
-.smoke.show{
-  opacity:1;
-}
-
-.smoke.show::before{
-  animation: smokeUp1 6s ease-out forwards;
-}
-
-.smoke.show::after{
-  animation: smokeUp2 7s ease-out forwards;
-}
-
-@keyframes smokeUp1{
-  0%   { transform: translate(-50%, 20px) scale(0.5); opacity: 0; }
-  25%  { opacity: 0.6; }
-  100% { transform: translate(-80%, -260px) scale(1.6); opacity: 0; }
-}
-
-@keyframes smokeUp2{
-  0%   { transform: translate(-50%, 20px) scale(0.4); opacity: 0; }
-  25%  { opacity: 0.4; }
-  100% { transform: translate(-20%, -300px) scale(1.9); opacity: 0; }
-}
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -734,7 +659,6 @@ z-index:100001;
                 padding: 60px 5%;
             }
         }
-    
     </style>
 </head>
 <body>
@@ -745,6 +669,10 @@ z-index:100001;
         <source src="mahabharat-shankh.mp3" type="audio/mpeg">
     </audio>
 
+    <div class="om-symbol">
+    <img src="om.png" alt="Om Symbol">
+</div>
+
     <div class="door left-door">
         <div class="door-content">
             <img src="parents.jpg" class="parents-photo">
@@ -753,6 +681,7 @@ z-index:100001;
             <p>सौ. रेखा पंकज वाघ</p>
         </div>
     </div>
+
     <div class="door right-door">
         <div class="door-content">
             <img src="bride.jpg" class="parents-photo">
@@ -762,12 +691,6 @@ z-index:100001;
     </div>
 
     <div class="door-light"></div>
-    
-    <div class="smoke"></div>
-
-    <div class="om-symbol">
-    <img src="om.png" alt="Om Symbol">
-</div>
     
     <button id="enterBtn" class="enter-btn">
         🕉️ प्रवेश करण्यासाठी येथे क्लिक करा
@@ -1268,46 +1191,50 @@ window.addEventListener("load", () => {
   const screen = document.getElementById("welcomeScreen");
 
   function startIntro() {
+      console.log("Intro Started");
 
-  shankh.play().catch(() => {});
+    // play sound
+    shankh.play().catch(err => console.log("Audio blocked:", err));
 
-  // 🚪 DOORS OPEN
-  setTimeout(() => {
-    document.querySelector(".left-door").style.transform = "translateX(-100%)";
-    document.querySelector(".right-door").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        shankh.pause();
+        shankh.currentTime = 0;
+    }, 15000);
 
-    document.querySelector(".door-light").style.width = "400px";
-  }, 500);
+    screen.removeEventListener("click", startIntro);
 
-  // 🕉️ OM
-  setTimeout(() => {
-    document.querySelector(".om-symbol").classList.add("show");
-  }, 2500);
-
-  // 🌫️ SMOKE (after OM)
-  setTimeout(() => {
-    document.querySelector(".smoke").classList.add("show");
-  }, 4000);
-
-  // 🔊 STOP SOUND
-  setTimeout(() => {
-    shankh.pause();
-    shankh.currentTime = 0;
-  }, 12000);
-
-  // 💫 HIDE SCREEN
-  setTimeout(() => {
-    const screen = document.getElementById("welcomeScreen");
-    screen.style.opacity = "0";
-
+    // OM symbol timing
     setTimeout(() => {
-      screen.style.display = "none";
-    }, 2000);
+      document.querySelector(".om-symbol").classList.add("show");
+    }, 1500);
 
-  }, 7000);
-}
-// click trigger
-screen.addEventListener("click", startIntro);
+    // doors open
+    setTimeout(() => {
+      document.querySelector(".left-door").style.transition = "4s";
+      document.querySelector(".right-door").style.transition = "4s";
+
+      document.querySelector(".left-door").style.transform = "translateX(-100%)";
+      document.querySelector(".right-door").style.transform = "translateX(100%)";
+
+      document.querySelector(".door-light").style.transition = "4s";
+      document.querySelector(".door-light").style.width = "350px";
+    }, 1000);
+
+    // hide welcome screen
+    setTimeout(() => {
+      screen.style.transition = "2s";
+      screen.style.opacity = "0";
+
+      setTimeout(() => {
+        screen.style.display = "none";
+      }, 2000);
+
+    }, 7000);
+  }
+
+  screen.addEventListener("click", startIntro);
+
+});
     </script>
 </body>
 </html>
