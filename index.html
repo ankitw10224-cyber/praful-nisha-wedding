@@ -659,16 +659,18 @@ z-index:100001;
                 padding: 60px 5%;
             }
         }
-        .smoke{
-    position: fixed;
-    top: 55%;
-    left: 50%;
-    width: 200px;
-    height: 300px;
-    transform: translate(-50%,-50%);
-    z-index: 100000;
-    background: rgba(255,255,255,0.3);
+    .smoke{
+    position:fixed;
+    left:50%;
+    top:55%;
+    width:200px;
+    height:300px;
+    transform:translateX(-50%);
+    pointer-events:none;
+    z-index:100000;
+    opacity:0;
 }
+
 .smoke::before,
 .smoke::after{
     content:"";
@@ -676,36 +678,39 @@ z-index:100001;
     bottom:0;
     left:50%;
     width:80px;
-    height:160px;
-    background:rgba(255,255,255,0.15);
-    border-radius:50%;
-    filter:blur(25px);
+    height:220px;
+    background:radial-gradient(
+        ellipse at center,
+        rgba(255,255,255,.18) 0%,
+        rgba(255,255,255,.08) 35%,
+        transparent 75%
+    );
+    filter:blur(22px);
+}
+
+.smoke::before{
+    animation:smokeRise1 6s linear infinite;
+}
+
+.smoke::after{
+    animation:smokeRise2 7s linear infinite;
+    animation-delay:1s;
 }
 
 .smoke.show{
     opacity:1;
 }
 
-.smoke.show::before{
-    animation:smokeRise 5s linear forwards;
+@keyframes smokeRise1{
+    0%{transform:translate(-50%,0) scale(.6);opacity:0;}
+    20%{opacity:.5;}
+    100%{transform:translate(-80%,-220px) scale(1.5);opacity:0;}
 }
 
-.smoke.show::after{
-    animation:smokeRise 5s linear .7s forwards;
-}
-
-@keyframes smokeRise{
-    0%{
-        transform:translate(-50%,0) scale(.4);
-        opacity:0;
-    }
-    20%{
-        opacity:.4;
-    }
-    100%{
-        transform:translate(-30%,-280px) scale(2);
-        opacity:0;
-    }
+@keyframes smokeRise2{
+    0%{transform:translate(-50%,0) scale(.5);opacity:0;}
+    20%{opacity:.4;}
+    100%{transform:translate(-20%,-240px) scale(1.8);opacity:0;}
 }
     </style>
 </head>
@@ -717,10 +722,6 @@ z-index:100001;
         <source src="mahabharat-shankh.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="om-symbol">
-    <img src="om.png" alt="Om Symbol">
-</div>
-
     <div class="door left-door">
         <div class="door-content">
             <img src="parents.jpg" class="parents-photo">
@@ -729,7 +730,6 @@ z-index:100001;
             <p>सौ. रेखा पंकज वाघ</p>
         </div>
     </div>
-
     <div class="door right-door">
         <div class="door-content">
             <img src="bride.jpg" class="parents-photo">
@@ -739,7 +739,12 @@ z-index:100001;
     </div>
 
     <div class="door-light"></div>
+    
     <div class="smoke"></div>
+
+    <div class="om-symbol">
+    <img src="om.png" alt="Om Symbol">
+</div>
     
     <button id="enterBtn" class="enter-btn">
         🕉️ प्रवेश करण्यासाठी येथे क्लिक करा
