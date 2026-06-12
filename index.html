@@ -1189,52 +1189,39 @@ window.addEventListener("load", () => {
 
   const shankh = document.getElementById("shankhSound");
   const screen = document.getElementById("welcomeScreen");
+  
 
-  function startIntro() {
-      console.log("Intro Started");
+ function startIntro() {
 
-    // play sound
-    shankh.play().catch(err => console.log("Audio blocked:", err));
+  const btn = document.getElementById("enterBtn");
+  btn.style.display = "none"; // ✅ इथे hide करायचं
 
-      setTimeout(() => {
-        shankh.pause();
-        shankh.currentTime = 0;
-    }, 15000);
+  shankh.play().catch(err => console.log("Audio blocked:", err));
 
-    screen.removeEventListener("click", startIntro);
+  document.querySelector(".smoke").classList.add("show");
 
-    // OM symbol timing
+  setTimeout(() => {
+    document.querySelector(".om-symbol").classList.add("show");
+  }, 1500);
+
+  setTimeout(() => {
+    document.querySelector(".left-door").style.transform = "translateX(-100%)";
+    document.querySelector(".right-door").style.transform = "translateX(100%)";
+    document.querySelector(".door-light").style.width = "350px";
+  }, 2500);
+
+  setTimeout(() => {
+    shankh.pause();
+    shankh.currentTime = 0;
+  }, 15000);
+
+  setTimeout(() => {
+    screen.style.opacity = "0";
     setTimeout(() => {
-      document.querySelector(".om-symbol").classList.add("show");
-    }, 1500);
-
-    // doors open
-    setTimeout(() => {
-      document.querySelector(".left-door").style.transition = "4s";
-      document.querySelector(".right-door").style.transition = "4s";
-
-      document.querySelector(".left-door").style.transform = "translateX(-100%)";
-      document.querySelector(".right-door").style.transform = "translateX(100%)";
-
-      document.querySelector(".door-light").style.transition = "4s";
-      document.querySelector(".door-light").style.width = "350px";
-    }, 1000);
-
-    // hide welcome screen
-    setTimeout(() => {
-      screen.style.transition = "2s";
-      screen.style.opacity = "0";
-
-      setTimeout(() => {
-        screen.style.display = "none";
-      }, 2000);
-
-    }, 7000);
-  }
-
-  screen.addEventListener("click", startIntro);
-
-});
+      screen.style.display = "none";
+    }, 2000);
+  }, 7000);
+}
     </script>
 </body>
 </html>
