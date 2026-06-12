@@ -1264,17 +1264,16 @@ window.addEventListener("load", () => {
       }, 500);
 
       // STEP 2: OM
-      setTimeout(() => {
-        const om = document.querySelector(".om-symbol");
-        if (om) om.classList.add("show");
-      }, 2500);
+     setTimeout(() => {
+  const om = document.querySelector(".om-symbol");
+  if (om) om.classList.add("show");
+}, 2500);
 
-      // STEP 3: SMOKE (after OM)
-      setTimeout(() => {
-        const smoke = document.querySelector(".smoke");
-        if (smoke) smoke.classList.add("show");
-      }, 10000);
-
+setTimeout(() => {
+  const smoke = document.querySelector(".smoke");
+  if (smoke) smoke.classList.add("show");
+}, 4000); // after OM
+        
       // STEP 4: hide screen
       setTimeout(() => {
         screen.style.opacity = "0";
