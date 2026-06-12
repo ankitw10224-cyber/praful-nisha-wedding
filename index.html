@@ -402,6 +402,46 @@ z-index:100001;
         bottom:25px;
     }
 }
+        .left-door, .right-door {
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 100000;
+
+    background: url("royal-door.jpg");
+    background-size: cover;
+    background-position: center;
+
+    /* 🎯 realistic depth */
+    filter: contrast(1.2) brightness(0.85);
+
+    /* 🏰 3D effect */
+    perspective: 1400px;
+    transform-style: preserve-3d;
+
+    transition: transform 2.8s cubic-bezier(0.77, 0, 0.175, 1);
+
+    /* heavy shadow */
+    box-shadow: inset 0 0 120px rgba(0,0,0,0.85);
+}
+        .left-door {
+    left: 0;
+    transform-origin: left;
+}
+
+.right-door {
+    right: 0;
+    transform-origin: right;
+}
+
+.left-door.open {
+    transform: perspective(1400px) rotateY(-115deg);
+}
+
+.right-door.open {
+    transform: perspective(1400px) rotateY(115deg);
+}
 
         body {
             font-family: 'Poppins', sans-serif;
