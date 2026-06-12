@@ -101,6 +101,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 100001;
+    opacity: 0;
+}
+        .om-symbol.show {
     animation: omFade 5s ease forwards;
 }
         .om-symbol img{
@@ -1161,14 +1164,17 @@ setTimeout(()=>{
 document.querySelector(".left-door").style.transition="4s";
 document.querySelector(".right-door").style.transition="4s";
 
-document.querySelector(".left-door").style.transform=
-"translateX(-100%)";
-
-document.querySelector(".right-door").style.transform=
-"translateX(100%)";
+document.querySelector(".left-door").style.transform="translateX(-100%)";
+document.querySelector(".right-door").style.transform="translateX(100%)";
 
 document.querySelector(".door-light").style.transition="4s";
 document.querySelector(".door-light").style.width="350px";
+
+
+// ⭐ ADD THIS HERE
+setTimeout(()=>{
+    document.querySelector(".om-symbol").classList.add("show");
+}, 1500);
 
 },5000);
 
