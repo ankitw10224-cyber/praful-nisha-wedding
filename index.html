@@ -1196,6 +1196,11 @@ window.addEventListener("load", () => {
     // play sound
     shankh.play().catch(err => console.log("Audio blocked:", err));
 
+      setTimeout(() => {
+        shankh.pause();
+        shankh.currentTime = 0;
+    }, 4000);
+
     screen.removeEventListener("click", startIntro);
 
     // OM symbol timing
