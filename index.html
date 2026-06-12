@@ -1189,40 +1189,31 @@ window.addEventListener("load", () => {
 
   const shankh = document.getElementById("shankhSound");
   const screen = document.getElementById("welcomeScreen");
+  const btn = document.getElementById("enterBtn");
 
   function startIntro() {
-      console.log("Intro Started");
+    console.log("Intro Started");
 
-    // play sound
+    btn.style.display = "none";
+
     shankh.play().catch(err => console.log("Audio blocked:", err));
 
-      setTimeout(() => {
-        shankh.pause();
-        shankh.currentTime = 0;
+    setTimeout(() => {
+      shankh.pause();
+      shankh.currentTime = 0;
     }, 15000);
 
-    screen.removeEventListener("click", startIntro);
-
-    // OM symbol timing
     setTimeout(() => {
       document.querySelector(".om-symbol").classList.add("show");
     }, 1500);
 
-    // doors open
     setTimeout(() => {
-      document.querySelector(".left-door").style.transition = "4s";
-      document.querySelector(".right-door").style.transition = "4s";
-
       document.querySelector(".left-door").style.transform = "translateX(-100%)";
       document.querySelector(".right-door").style.transform = "translateX(100%)";
-
-      document.querySelector(".door-light").style.transition = "4s";
       document.querySelector(".door-light").style.width = "350px";
     }, 1000);
 
-    // hide welcome screen
     setTimeout(() => {
-      screen.style.transition = "2s";
       screen.style.opacity = "0";
 
       setTimeout(() => {
@@ -1231,9 +1222,13 @@ window.addEventListener("load", () => {
 
     }, 7000);
   }
-    screen.addEventListener("click", startIntro);
+
+  // only button click
+  btn.addEventListener("click", startIntro);
 
 });
+    screen.addEventListener("click", startIntro);
+
     </script>
 </body>
 </html>
