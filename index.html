@@ -1189,39 +1189,52 @@ window.addEventListener("load", () => {
 
   const shankh = document.getElementById("shankhSound");
   const screen = document.getElementById("welcomeScreen");
-  
 
- function startIntro() {
+  function startIntro() {
+      console.log("Intro Started");
 
-  const btn = document.getElementById("enterBtn");
-  btn.style.display = "none"; // ✅ इथे hide करायचं
+    // play sound
+    shankh.play().catch(err => console.log("Audio blocked:", err));
 
-  shankh.play().catch(err => console.log("Audio blocked:", err));
+      setTimeout(() => {
+        shankh.pause();
+        shankh.currentTime = 0;
+    }, 15000);
 
-  document.querySelector(".smoke").classList.add("show");
+    screen.removeEventListener("click", startIntro);
 
-  setTimeout(() => {
-    document.querySelector(".om-symbol").classList.add("show");
-  }, 1500);
-
-  setTimeout(() => {
-    document.querySelector(".left-door").style.transform = "translateX(-100%)";
-    document.querySelector(".right-door").style.transform = "translateX(100%)";
-    document.querySelector(".door-light").style.width = "350px";
-  }, 2500);
-
-  setTimeout(() => {
-    shankh.pause();
-    shankh.currentTime = 0;
-  }, 15000);
-
-  setTimeout(() => {
-    screen.style.opacity = "0";
+    // OM symbol timing
     setTimeout(() => {
-      screen.style.display = "none";
-    }, 2000);
-  }, 7000);
-}
+      document.querySelector(".om-symbol").classList.add("show");
+    }, 1500);
+
+    // doors open
+    setTimeout(() => {
+      document.querySelector(".left-door").style.transition = "4s";
+      document.querySelector(".right-door").style.transition = "4s";
+
+      document.querySelector(".left-door").style.transform = "translateX(-100%)";
+      document.querySelector(".right-door").style.transform = "translateX(100%)";
+
+      document.querySelector(".door-light").style.transition = "4s";
+      document.querySelector(".door-light").style.width = "350px";
+    }, 1000);
+
+    // hide welcome screen
+    setTimeout(() => {
+      screen.style.transition = "2s";
+      screen.style.opacity = "0";
+
+      setTimeout(() => {
+        screen.style.display = "none";
+      }, 2000);
+
+    }, 7000);
+  }
+
+  screen.addEventListener("click", startIntro);
+
+});
     </script>
 </body>
 </html>
