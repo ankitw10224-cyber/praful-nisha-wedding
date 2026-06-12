@@ -402,6 +402,22 @@ z-index:100001;
         bottom:25px;
     }
 }
+        .left-door, .right-door {
+    animation: royalGlow 4s infinite ease-in-out;
+}
+
+@keyframes royalGlow {
+    0%,100% {
+        box-shadow:
+        inset 0 0 50px rgba(255,215,0,.3),
+        0 0 30px rgba(255,215,0,.4);
+    }
+    50% {
+        box-shadow:
+        inset 0 0 70px rgba(255,215,0,.5),
+        0 0 50px rgba(255,215,0,.6);
+    }
+}
 
         body {
             font-family: 'Poppins', sans-serif;
