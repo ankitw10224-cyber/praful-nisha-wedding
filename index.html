@@ -101,7 +101,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 100001;
-    animation: omFade 3s ease forwards;
+    animation: omFade 5s ease forwards;
 }
         .om-symbol img{
     width:120px;
@@ -112,19 +112,11 @@
 }
 
 @keyframes omFade{
-    0%{
-        opacity:0;
-        transform:translate(-50%,-50%) scale(0.4);
-    }
-    40%{
-        opacity:1;
-    }
-    100%{
-        opacity:0;
-        transform:translate(-50%,-50%) scale(1.4);
-    }
+0%{opacity:0; transform:translate(-50%,-50%) scale(.6);}
+20%{opacity:1;}
+80%{opacity:1;}
+100%{opacity:0; transform:translate(-50%,-50%) scale(1.2);}
 }
-
 .door-light{
 position:absolute;
 left:50%;
