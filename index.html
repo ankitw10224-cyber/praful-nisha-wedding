@@ -116,7 +116,7 @@
 }
         .om-symbol.show{
     display:flex;
-    animation: omFade 3s forwards;
+    animation: omFade 5s forwards;
 }
         .om-symbol img{
     width: 360px;
@@ -125,8 +125,8 @@
 @keyframes omFade{
 0%{opacity:0; transform:translate(-50%,-50%) scale(.6);}
 20%{opacity:1;}
-80%{opacity:1;}
-100%{opacity:0; transform:translate(-50%,-50%) scale(1.2);}
+75%{opacity:1;}
+100%{opacity:0; transform:translate(-50%,-50%) scale(1.1);}
 }
 .door-light{
 position:absolute;
@@ -1221,7 +1221,7 @@ window.addEventListener("load", () => {
 
     setTimeout(() => {
       document.querySelector(".om-symbol").classList.add("show");
-    }, 1500);
+    }, 500);
 
     setTimeout(() => {
       document.querySelector(".left-door").style.transform = "translateX(-100%)";
