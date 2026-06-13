@@ -118,6 +118,10 @@
     display:flex;
     animation: omFade 3s forwards;
 }
+        .om-symbol img{
+    width: 120px;
+    height: auto;
+}
 @keyframes omFade{
 0%{opacity:0; transform:translate(-50%,-50%) scale(.6);}
 20%{opacity:1;}
@@ -404,6 +408,15 @@ z-index:100001;
         font-size:14px;
         padding:12px 20px;
         bottom:25px;
+    }
+}
+        @media (max-width:768px){
+    .om-symbol img{
+        width: 90px;
+    }
+
+    .om-text{
+        font-size: 1rem;
     }
 }
 
