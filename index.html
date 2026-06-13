@@ -741,8 +741,8 @@ z-index:100001;
         <button class="btn" id="musicBtn" onclick="playMusic()">🎵 Music Start</button>
     </section>
 
-    <section class="section" id="countdownSection">
-    <h2 class="title">⏳ Countdown</h2>
+    <section class="section">
+        <h2 class="title">⏳ Countdown</h2>
         <div class="countdown">
             <div class="box"><span id="days">0</span>Days</div>
             <div class="box"><span id="hours">0</span>Hours</div>
@@ -1233,18 +1233,12 @@ bgMusic.play().catch(err => console.log(err));
     
     }, 1000);
 
-setTimeout(() => {
+   setTimeout(() => {
 
   screen.style.opacity = "0";
 
   setTimeout(() => {
-
     screen.style.display = "none";
-
-    document.getElementById("countdownSection").scrollIntoView({
-      behavior: "smooth"
-    });
-
   }, 2000);
 
 }, 7000);
