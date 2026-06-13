@@ -1211,6 +1211,8 @@ window.addEventListener("load", () => {
     console.log("Intro Started");
 
     btn.style.display = "none";
+      const bgMusic = document.getElementById("bgMusic");
+bgMusic.volume = 0.3;
 
     shankh.play().catch(err => console.log("Audio blocked:", err));
 
@@ -1231,6 +1233,7 @@ window.addEventListener("load", () => {
     }, 1000);
 
    setTimeout(() => {
+       bgMusic.play().catch(err => console.log(err));
 
   screen.style.opacity = "0";
 
