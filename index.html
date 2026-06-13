@@ -116,7 +116,7 @@
 }
         .om-symbol.show{
     display:flex;
-    animation: omFade 5s forwards;
+    animation: omFade 10s forwards;
 }
         .om-symbol img{
     width: 360px;
@@ -1221,7 +1221,7 @@ window.addEventListener("load", () => {
 
     setTimeout(() => {
       document.querySelector(".om-symbol").classList.add("show");
-    }, 200);
+    }, 3500);
 
     setTimeout(() => {
       document.querySelector(".left-door").style.transform = "translateX(-100%)";
@@ -1229,7 +1229,7 @@ window.addEventListener("load", () => {
       document.querySelector(".door-light").style.width = "350px";
         document.querySelector(".om-symbol").style.display = "flex";
      
-    }, 2500);
+    }, 1000);
 
     setTimeout(() => {
       screen.style.opacity = "0";
