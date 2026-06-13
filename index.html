@@ -728,7 +728,7 @@ z-index:100001;
     <div class="petals" id="petals"></div>
 
     <audio id="bgMusic" loop>
-        <source src="mere-piya-ghar-aavenge.mp3" type="audio/mpeg">
+        <source src="shehnai.mp3" type="audio/mpeg"
     </audio>
 
     <section class="hero">
@@ -1211,6 +1211,8 @@ window.addEventListener("load", () => {
     console.log("Intro Started");
 
     btn.style.display = "none";
+      const bgMusic = document.getElementById("bgMusic");
+bgMusic.volume = 0.3;
 
     shankh.play().catch(err => console.log("Audio blocked:", err));
 
@@ -1230,14 +1232,17 @@ window.addEventListener("load", () => {
     
     }, 1000);
 
-    setTimeout(() => {
-      screen.style.opacity = "0";
+   setTimeout(() => {
 
-      setTimeout(() => {
-        screen.style.display = "none";
-      }, 2000);
+  bgMusic.play().catch(err => console.log(err));
 
-    }, 7000);
+  screen.style.opacity = "0";
+
+  setTimeout(() => {
+    screen.style.display = "none";
+  }, 2000);
+
+}, 7000);
       
     }
   // only button click
