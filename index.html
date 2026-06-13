@@ -1215,8 +1215,6 @@ window.addEventListener("load", () => {
 bgMusic.volume = 0.3;
 
     shankh.play().catch(err => console.log("Audio blocked:", err));
-      const bgMusic = document.getElementById("bgMusic");
-bgMusic.volume = 0.3;
 bgMusic.play().catch(err => console.log(err));
 
     setTimeout(() => {
@@ -1250,7 +1248,6 @@ bgMusic.play().catch(err => console.log(err));
   btn.addEventListener("click", startIntro);
 
 });
-    screen.addEventListener("click", startIntro);
 
     </script>
 </body>
