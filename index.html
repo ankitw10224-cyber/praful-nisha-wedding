@@ -747,6 +747,9 @@ z-index:100001;
     <audio id="bgMusic" loop>
     <source src="Jashne-Bahara.mp3" type="audio/mpeg">
 </audio>
+    <audio id="welcomeVoice">
+    <source src="welcome.mp3" type="audio/mpeg">
+</audio>
 
     <section class="hero">
 <img src="bappa.jpg" alt="Ganpati Bappa Morya" class="bappa-img">
@@ -1231,8 +1234,15 @@ window.addEventListener("load", () => {
     btn.style.display = "none";
       const bgMusic = document.getElementById("bgMusic");
 bgMusic.volume = 0.9;
+      const welcomeVoice = document.getElementById("welcomeVoice");
 
     shankh.play().catch(err => console.log("Audio blocked:", err));
+
+setTimeout(() => {
+    const welcomeVoice = document.getElementById("welcomeVoice");
+    welcomeVoice.play().catch(err => console.log(err));
+}, 3000);
+
 bgMusic.play().catch(err => console.log(err));
 
     setTimeout(() => {
