@@ -436,7 +436,7 @@ z-index:100001;
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a001f, #4b0082, #800080);
+            background: radial-gradient(circle at top, #2e003e, #000000);
             color: white;
             overflow-x: hidden;
         }
@@ -461,7 +461,7 @@ z-index:100001;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at top, #3a0050, #000);
+            background: radial-gradient(circle at top, #2a0033, #000);
             z-index: -2;
         }
 
@@ -690,39 +690,9 @@ z-index:100001;
                 padding: 60px 5%;
             }
         }
-        #netflixIntro{
-    position: fixed;
-    inset: 0;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999999;
-    animation: fadeOut 2s ease 3.5s forwards;
-}
-
-#netflixIntro h1{
-    color: #ffd700;
-    font-size: 3rem;
-    font-family: 'Cinzel', serif;
-    text-shadow: 0 0 20px #ffd700, 0 0 40px #ffcc00;
-    animation: zoomIn 2s ease;
-}
-
-@keyframes zoomIn{
-    0%{transform: scale(0.5); opacity: 0;}
-    100%{transform: scale(1.2); opacity: 1;}
-}
-
-@keyframes fadeOut{
-    to{opacity: 0; visibility: hidden;}
-}
     </style>
 </head>
 <body>
-    <div id="netflixIntro">
-    <h1>PRAFUL ❤️ NISHA</h1>
-</div>
     
 <div id="welcomeScreen">
 
@@ -1255,53 +1225,53 @@ window.addEventListener("load", () => {
   const screen = document.getElementById("welcomeScreen");
   const btn = document.getElementById("enterBtn");
 
- function startIntro() {
+  function startIntro() {
+    console.log("Intro Started");
 
-    const intro = document.getElementById("netflixIntro");
-    const screen = document.getElementById("welcomeScreen");
-    const btn = document.getElementById("enterBtn");
-    const shankh = document.getElementById("shankhSound");
+    btn.style.display = "none";
+      const bgMusic = document.getElementById("bgMusic");
+bgMusic.volume = 0.3;
 
-    if (intro) {
-        setTimeout(() => {
-            intro.remove();
-        }, 3500);
-    }
-
-    if (btn) btn.style.display = "none";
-
-    const bgMusic = document.getElementById("bgMusic");
-    if (bgMusic) {
-        bgMusic.volume = 0.3;
-        bgMusic.play().catch(err => console.log(err));
-    }
-
-    if (shankh) {
-        shankh.play().catch(err => console.log(err));
-    }
+    shankh.play().catch(err => console.log("Audio blocked:", err));
+bgMusic.play().catch(err => console.log(err));
 
     setTimeout(() => {
-        const om = document.querySelector(".om-symbol");
-        if (om) om.classList.add("show");
+      shankh.pause();
+      shankh.currentTime = 0;
+    }, 15000);
+
+    setTimeout(() => {
+      document.querySelector(".om-symbol").classList.add("show");
     }, 1500);
 
     setTimeout(() => {
-        const left = document.querySelector(".left-door");
-        const right = document.querySelector(".right-door");
+      document.querySelector(".left-door").style.transform = "translateX(-100%)";
+      document.querySelector(".right-door").style.transform = "translateX(100%)";
+      document.querySelector(".door-light").style.width = "350px";
+    
+    }, 1000);
 
-        if (left) left.style.transform = "translateX(-100%)";
-        if (right) right.style.transform = "translateX(100%)";
-    }, 4000);
+   setTimeout(() => {
 
-    setTimeout(() => {
-        if (screen) {
-            screen.style.opacity = "0";
+  screen.style.opacity = "0";
 
-            setTimeout(() => {
-                screen.style.display = "none";
-            }, 2000);
-        }
-    }, 8000);
+  setTimeout(() => {
+    screen.style.display = "none";
+  }, 2000);
+
+}, 7000);
+      
+    }
+  // only button click
+  btn.addEventListener("click", startIntro);
+
+});
+        const params = new URLSearchParams(window.location.search);
+const guest = params.get("guest");
+
+if(guest){
+    document.getElementById("guestName").innerHTML =
+    "💌 " + guest + " 💌";
 }
 
     </script>
