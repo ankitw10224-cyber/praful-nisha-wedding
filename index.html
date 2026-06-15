@@ -420,6 +420,19 @@ z-index:100001;
         font-size: 1.6rem;
     }
 }
+        #guestName{
+    color:#ffd700;
+    font-size:2rem;
+    text-align:center;
+    margin-bottom:15px;
+    text-shadow:0 0 15px gold;
+}
+
+@media(max-width:768px){
+    #guestName{
+        font-size:1.2rem;
+    }
+}
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -688,6 +701,9 @@ z-index:100001;
     </audio>
 
     <div class="om-symbol">
+        
+        <h2 id="Rahul Kulkarni"></h2>
+        
     <img src="om.png" alt="Om Symbol">
 
         <p class="om-text">
@@ -1250,6 +1266,13 @@ bgMusic.play().catch(err => console.log(err));
   btn.addEventListener("click", startIntro);
 
 });
+        const params = new URLSearchParams(window.location.search);
+const guest = params.get("guest");
+
+if(guest){
+    document.getElementById("guestName").innerHTML =
+    "💌 " + guest + " 💌";
+}
 
     </script>
 </body>
