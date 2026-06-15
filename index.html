@@ -2563,8 +2563,8 @@ setTimeout(() => {
 /* 4 सेकंदानंतर बंद */
 window.addEventListener("load", () => {
 
-  const shankh = document.getElementById("shankhSound");
-  const screen = document.getElementById("welcomeScreen");
+  const shankh = document.getElementById("shankhSound") || null;
+const screen = document.getElementById("welcomeScreen") || document.body;
   const btn = document.getElementById("enterBtn");
 
   function startIntro() {
