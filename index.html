@@ -1238,13 +1238,19 @@ bgMusic.volume = 0.9;
 
     shankh.play().catch(err => console.log("Audio blocked:", err));
 
-setTimeout(() => {
+shankh.onended = () => {
+
     const welcomeVoice = document.getElementById("welcomeVoice");
+
     welcomeVoice.play().catch(err => console.log(err));
-}, 3000);
 
-bgMusic.play().catch(err => console.log(err));
+    welcomeVoice.onended = () => {
 
+        bgMusic.volume = 0.3;
+        bgMusic.play().catch(err => console.log(err));
+
+    };
+};
     setTimeout(() => {
       shankh.pause();
       shankh.currentTime = 0;
