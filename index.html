@@ -1238,6 +1238,13 @@ window.addEventListener("load", () => {
 
         btn.style.display = "none";
 
+           // Mobile Audio Unlock
+    bgMusic.volume = 0;
+    bgMusic.play().then(() => {
+        bgMusic.pause();
+        bgMusic.currentTime = 0;
+    }).catch(() => {});
+
         // Welcome Voice
         welcomeVoice.currentTime = 0;
         welcomeVoice.play().catch(err =>
