@@ -1228,45 +1228,58 @@ window.addEventListener("load", () => {
   const screen = document.getElementById("welcomeScreen");
   const btn = document.getElementById("enterBtn");
 
-function startIntro() {
-    console.log("Intro Started");
+  const bgMusic = document.getElementById("bgMusic");
+  const welcomeVoice = document.getElementById("welcomeVoice");
 
+  let introStarted = false; // ✅ prevent double click conflict
+
+  function startIntro() {
+
+    if (introStarted) return; // ✅ safety lock
+    introStarted = true;
+
+    btn.disabled = true;
     btn.style.display = "none";
 
-    const bgMusic = document.getElementById("bgMusic");
-    const welcomeVoice = document.getElementById("welcomeVoice");
-
-    // Welcome Voice
+    // 1️⃣ Welcome voice start
     welcomeVoice.play().catch(err => console.log(err));
 
     welcomeVoice.onended = () => {
 
-        // Voice samplyavar Shankh
-        shankh.play().catch(err => console.log(err));
+      // 2️⃣ Shankh start
+      shankh.currentTime = 0;
+      shankh.play().catch(err => console.log(err));
 
-        // Shankh suru jhala ki Om + Doors Open
+      // ⏱️ SHANKH LENGTH CONTROL (CHANGE HERE)
+      setTimeout(() => {
+
+        shankh.pause();
+        shankh.currentTime = 0;
+
+        // 3️⃣ Open doors + OM reveal
         document.querySelector(".om-symbol").classList.add("show");
 
-document.querySelector(".left-door").style.transform = "translateX(-100%)";
-document.querySelector(".right-door").style.transform = "translateX(100%)";
-document.querySelector(".door-light").style.width = "350px";
+        document.querySelector(".left-door").style.transform = "translateX(-100%)";
+        document.querySelector(".right-door").style.transform = "translateX(100%)";
+        document.querySelector(".door-light").style.width = "350px";
 
-        // Shankh samplyavar Music + Main Website
-        shankh.onended = () => {
+        // 4️⃣ background music start
+        bgMusic.volume = 0.3;
+        bgMusic.play().catch(err => console.log(err));
 
-            bgMusic.volume = 0.3;
-            bgMusic.play().catch(err => console.log(err));
+        // 5️⃣ hide welcome screen
+        screen.style.opacity = "0";
 
-            screen.style.opacity = "0";
+        setTimeout(() => {
+          screen.style.display = "none";
+        }, 2000);
 
-            setTimeout(() => {
-                screen.style.display = "none";
-            }, 2000);
-        };
+      }, 1600); // ⭐ SHANKH LENGTH (1.6 sec BEST)
+
     };
-}
+  }
 
-btn.addEventListener("click", startIntro);
+  btn.addEventListener("click", startIntro);
 
 });
         const params = new URLSearchParams(window.location.search);
