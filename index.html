@@ -1229,7 +1229,6 @@ window.addEventListener("load", () => {
   const btn = document.getElementById("enterBtn");
 
 function startIntro() {
-
     console.log("Intro Started");
 
     btn.style.display = "none";
@@ -1237,22 +1236,23 @@ function startIntro() {
     const bgMusic = document.getElementById("bgMusic");
     const welcomeVoice = document.getElementById("welcomeVoice");
 
+    // Welcome Voice
     welcomeVoice.play().catch(err => console.log(err));
 
     welcomeVoice.onended = () => {
 
+        // Voice samplyavar Shankh
         shankh.play().catch(err => console.log(err));
 
+        // Shankh suru jhala ki Om + Doors Open
         document.querySelector(".om-symbol").classList.add("show");
 
-        document.querySelector(".left-door").style.transform = "translateX(-100%)";
-        document.querySelector(".right-door").style.transform = "translateX(100%)";
-        document.querySelector(".door-light").style.width = "350px";
+document.querySelector(".left-door").style.transform = "translateX(-100%)";
+document.querySelector(".right-door").style.transform = "translateX(100%)";
+document.querySelector(".door-light").style.width = "350px";
 
-        setTimeout(() => {
-
-            shankh.pause();
-            shankh.currentTime = 0;
+        // Shankh samplyavar Music + Main Website
+        shankh.onended = () => {
 
             bgMusic.volume = 0.3;
             bgMusic.play().catch(err => console.log(err));
@@ -1262,8 +1262,7 @@ function startIntro() {
             setTimeout(() => {
                 screen.style.display = "none";
             }, 2000);
-
-        }, 15000);
+        };
     };
 }
 
