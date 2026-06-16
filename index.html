@@ -1238,56 +1238,99 @@ window.addEventListener("load", () => {
 
         btn.style.display = "none";
 
+        // Welcome Voice
+        welcomeVoice.currentTime = 0;
         welcomeVoice.play().catch(err =>
             console.log("welcome error:", err)
         );
 
         welcomeVoice.onended = () => {
 
-            introSong.currentTime = 0;
-            introSong.volume = 1;
-            introSong.play();
-
+            // Door Open
             document.querySelector(".left-door").style.transform =
                 "translateX(-100%)";
 
             document.querySelector(".right-door").style.transform =
                 "translateX(100%)";
 
+            // OM Show
             document.querySelector(".om-symbol").classList.add("show");
 
-            introSong.addEventListener("timeupdate", function fadeMusic(){
+            // Vakratunda Start
+            introSong.currentTime = 0;
+            introSong.volume = 1;
 
-                if(introSong.duration - introSong.currentTime <= 5){
+            introSong.play().catch(err =>
+                console.log("intro song error:", err)
+            );
 
-                    let fade = setInterval(() => {
+            // Mobile Safe Fade Out
+            const fadeStart = () => {
 
-                        if(introSong.volume > 0.05){
-                            introSong.volume -= 0.05;
-                        }else{
+                let fade = setInterval(() => {
 
-                            introSong.volume = 0;
-                            clearInterval(fade);
+                    if (introSong.volume > 0.05) {
+                        introSong.volume -= 0.05;
+                    } else {
 
-                            screen.style.opacity = "0";
+                        introSong.volume = 0;
+                        clearInterval(fade);
 
-                            setTimeout(() => {
+                        screen.style.opacity = "0";
 
-                                screen.style.display = "none";
+                        setTimeout(() => {
 
-                                bgMusic.volume = 0.3;
-                                bgMusic.play();
+                            screen.style.display = "none";
 
-                            }, 2000);
+                            bgMusic.volume = 0.3;
 
-                        }
+                            bgMusic.play().catch(err =>
+                                console.log("bg music error:", err)
+                            );
 
-                    }, 200);
+                        }, 2000);
 
-                    introSong.removeEventListener("timeupdate", fadeMusic);
+                    }
+
+                }, 200);
+
+            };
+
+            // Fade start 5 sec before ending
+            const checkFade = setInterval(() => {
+
+                if (
+                    introSong.duration &&
+                    (introSong.duration - introSong.currentTime <= 5)
+                ) {
+
+                    clearInterval(checkFade);
+                    fadeStart();
+
                 }
 
-            });
+            }, 500);
+
+            // Fallback for Mobile Browsers
+            introSong.onended = () => {
+
+                if (screen.style.display !== "none") {
+
+                    screen.style.opacity = "0";
+
+                    setTimeout(() => {
+
+                        screen.style.display = "none";
+
+                        bgMusic.volume = 0.3;
+
+                        bgMusic.play().catch(() => {});
+
+                    }, 2000);
+
+                }
+
+            };
 
         };
 
