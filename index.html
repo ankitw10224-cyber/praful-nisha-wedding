@@ -1224,79 +1224,83 @@ setTimeout(() => {
 /* 4 सेकंदानंतर बंद */
 window.addEventListener("load", () => {
 
-  const shankh = document.getElementById("shankhSound");
-  const screen = document.getElementById("welcomeScreen");
-  const btn = document.getElementById("enterBtn");
+    const btn = document.getElementById("enterBtn");
+    const welcomeVoice = document.getElementById("welcomeVoice");
+    const shankh = document.getElementById("shankhSound");
+    const bgMusic = document.getElementById("bgMusic");
+    const screen = document.getElementById("welcomeScreen");
 
-  const bgMusic = document.getElementById("bgMusic");
-  const welcomeVoice = document.getElementById("welcomeVoice");
+    let started = false;
 
-  let introStarted = false; // ✅ prevent double click conflict
+    btn.addEventListener("click", startIntro);
 
-  function startIntro() {
+    function startIntro() {
 
-    if (introStarted) return; // ✅ safety lock
-    introStarted = true;
+        if (started) return;
+        started = true;
 
-    btn.disabled = true;
-    btn.style.display = "none";
+        btn.style.display = "none";
 
-    // 1️⃣ Welcome voice start
-    welcomeVoice.play().catch(err => console.log(err));
+        // STEP 1: Welcome Voice
+        welcomeVoice.play().catch(err => console.log(err));
 
-welcomeVoice.onended = () => {
+        welcomeVoice.onended = () => {
 
-    // 🔥 START HERE
-    shankh.currentTime = 0;
-    shankh.volume = 1;
-    shankh.play().catch(err => console.log(err));
+            // STEP 2: Shankh Start
+            shankh.currentTime = 0;
+            shankh.volume = 1;
+            shankh.play().catch(err => console.log(err));
 
-    setTimeout(() => {
+            // STEP 3: After 15 sec start transition
+            setTimeout(() => {
 
-        const om = document.querySelector(".om-symbol");
-        om.classList.add("show");
+                // OM FADE IN
+                const om = document.querySelector(".om-symbol");
+                if (om) om.classList.add("show");
 
-        let fade = setInterval(() => {
+                // SHANKH FADE OUT SMOOTH
+                let fade = setInterval(() => {
 
-            if (shankh.volume > 0.05) {
-                shankh.volume -= 0.03;
-            } else {
-                clearInterval(fade);
-                shankh.pause();
-                shankh.currentTime = 0;
+                    if (shankh.volume > 0.05) {
+                        shankh.volume -= 0.03;
+                    } else {
+                        clearInterval(fade);
 
-                document.querySelector(".left-door").style.transform = "translateX(-100%)";
-                document.querySelector(".right-door").style.transform = "translateX(100%)";
-                document.querySelector(".door-light").style.width = "350px";
+                        shankh.pause();
+                        shankh.currentTime = 0;
 
-                const bgMusic = document.getElementById("bgMusic");
-                const screen = document.getElementById("welcomeScreen");
+                        // DOORS OPEN
+                        document.querySelector(".left-door").style.transform = "translateX(-100%)";
+                        document.querySelector(".right-door").style.transform = "translateX(100%)";
+                        document.querySelector(".door-light").style.width = "350px";
 
-                bgMusic.volume = 0.3;
-                bgMusic.play().catch(err => console.log(err));
+                        // BG MUSIC START
+                        bgMusic.volume = 0.3;
+                        bgMusic.play().catch(err => console.log(err));
 
-                screen.style.opacity = "0";
+                        // SCREEN FADE OUT
+                        screen.style.opacity = "0";
 
-                setTimeout(() => {
-                    screen.style.display = "none";
-                }, 2000);
-            }
+                        setTimeout(() => {
+                            screen.style.display = "none";
+                        }, 2000);
+                    }
 
-        }, 200);
+                }, 200);
 
-    }, 15000);
-};
+            }, 15000); // shankh duration
+        };
+    }
 
-  btn.addEventListener("click", startIntro);
+    // Guest name logic
+    const params = new URLSearchParams(window.location.search);
+    const guest = params.get("guest");
 
+    if (guest) {
+        document.getElementById("guestName").innerHTML =
+            "💌 " + guest + " 💌";
+    }
 });
-        const params = new URLSearchParams(window.location.search);
-const guest = params.get("guest");
-
-if(guest){
-    document.getElementById("guestName").innerHTML =
-    "💌 " + guest + " 💌";
-}
 
     </script>
 </body>
