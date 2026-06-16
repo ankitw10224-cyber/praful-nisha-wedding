@@ -1243,44 +1243,52 @@ window.addEventListener("load", () => {
             console.log("welcome error:", err)
         );
 
-        welcomeVoice.onended = () => {
+welcomeVoice.onended = () => {
 
-            // Vakratunda
-            introSong.currentTime = 0;
-            introSong.play().catch(err =>
-                console.log("intro error:", err)
-            );
+    introSong.currentTime = 0;
+    introSong.volume = 1;
+    introSong.play();
 
-            // Door Open
-            document.querySelector(".left-door").style.transform =
-                "translateX(-100%)";
+    document.querySelector(".left-door").style.transform =
+        "translateX(-100%)";
 
-            document.querySelector(".right-door").style.transform =
-                "translateX(100%)";
+    document.querySelector(".right-door").style.transform =
+        "translateX(100%)";
 
-            // OM Show
-            document.querySelector(".om-symbol").classList.add("show");
+    document.querySelector(".om-symbol").classList.add("show");
 
-            // Vakratunda End
-            introSong.onended = () => {
+    // Song संपायच्या 5 सेकंद आधी fade out
+    introSong.addEventListener("timeupdate", function fadeMusic(){
 
-                screen.style.opacity = "0";
+        if(introSong.duration - introSong.currentTime <= 5){
 
-                setTimeout(() => {
-                    screen.style.display = "none";
+            let fade = setInterval(() => {
 
-                    bgMusic.volume = 0.3;
-                    bgMusic.play().catch(err =>
-                        console.log("bg error:", err)
-                    );
+                if(introSong.volume > 0.05){
+                    introSong.volume -= 0.05;
+                }else{
+                    introSong.volume = 0;
+                    clearInterval(fade);
 
-                }, 2000);
+                    screen.style.opacity = "0";
 
-            };
+                    setTimeout(() => {
+                        screen.style.display = "none";
 
-        };
+                        bgMusic.volume = 0.3;
+                        bgMusic.play();
 
-    }
+                    }, 2000);
+                }
+
+            }, 200);
+
+            introSong.removeEventListener("timeupdate", fadeMusic);
+        }
+
+    });
+
+};
 
     btn.addEventListener("click", startIntro);
 
