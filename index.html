@@ -1242,51 +1242,72 @@ window.addEventListener("load", () => {
 
     // 1) Voice start
     welcomeVoice.play().catch(()=>{});
+      function startIntro() {
 
-    welcomeVoice.onended = () => {
+  if (started) return;
+  started = true;
 
-      // 2) SHANKH START (short)
-      shankh.currentTime = 0;
-      shankh.play().catch(()=>{});
+  btn.style.display = "none";
 
-      // 👉 SHORT SHANKH LENGTH CONTROL (CHANGE HERE)
+  welcomeVoice.play().catch(()=>{});
+
+  welcomeVoice.onended = () => {
+
+    // 👉 HERE YOUR NEW CODE PASTE
+
+    shankh.currentTime = 0;
+    shankh.play().catch(()=>{});
+
+    document.querySelector(".left-door").style.transform = "translateX(-100%)";
+    document.querySelector(".right-door").style.transform = "translateX(100%)";
+
+    setTimeout(() => {
+      document.querySelector(".om-symbol").classList.add("show");
+    }, 800);
+
+    bgMusic.volume = 0.3;
+    bgMusic.play().catch(()=>{});
+
+    setTimeout(() => {
+      screen.style.opacity = "0";
       setTimeout(() => {
+        screen.style.display = "none";
+      }, 2000);
+    }, 2000);
 
-        // 3) stop shankh
-        shankh.pause();
-        shankh.currentTime = 0;
+  };
 
-        // 4) DOOR OPEN
-        document.querySelector(".left-door").style.transform = "translateX(-100%)";
-        document.querySelector(".right-door").style.transform = "translateX(100%)";
-
-        // 5) OM SHOW (after door open)
-        setTimeout(() => {
-
-          document.querySelector(".om-symbol").classList.add("show");
-
-          // 6) BG MUSIC
-          bgMusic.volume = 0.3;
-          bgMusic.play().catch(()=>{});
-
-          // 7) SCREEN REMOVE
-          setTimeout(() => {
-            screen.style.opacity = "0";
-
-            setTimeout(() => {
-              screen.style.display = "none";
-            }, 2000);
-
-          }, 1500);
-
-        }, 1200); // 👈 DOOR OPEN नंतर OM delay
-
-      }, 2500); // 👈 SHANKH LENGTH (short/long इथे control कर)
-
-    };
-  }
+}
 
   btn.addEventListener("click", startIntro);
+    welcomeVoice.onended = () => {
+
+  // 1) shankh start
+  shankh.currentTime = 0;
+  shankh.play().catch(()=>{});
+
+  // 2) DOOR OPEN IMMEDIATELY WITH SHANKH (SYNC)
+  document.querySelector(".left-door").style.transform = "translateX(-100%)";
+  document.querySelector(".right-door").style.transform = "translateX(100%)";
+
+  // 3) OM AFTER SMALL DELAY (optional)
+  setTimeout(() => {
+    document.querySelector(".om-symbol").classList.add("show");
+  }, 800);
+
+  // 4) BG MUSIC
+  bgMusic.volume = 0.3;
+  bgMusic.play().catch(()=>{});
+
+  // 5) SCREEN HIDE
+  setTimeout(() => {
+    screen.style.opacity = "0";
+    setTimeout(() => {
+      screen.style.display = "none";
+    }, 2000);
+  }, 2000);
+
+};
 
   // guest name
   const params = new URLSearchParams(window.location.search);
