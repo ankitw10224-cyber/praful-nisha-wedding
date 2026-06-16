@@ -1247,47 +1247,40 @@ window.addEventListener("load", () => {
 
     welcomeVoice.onended = () => {
 
-      // STEP 2: shankh short
-      shankh.currentTime = 0;
-      shankh.play().catch(()=>{});
+      welcomeVoice.onended = () => {
 
-      setTimeout(() => {
+    // Shankh
+    shankh.currentTime = 0;
+    shankh.play().catch(()=>{});
+
+    // Door Open
+    document.querySelector(".left-door").style.transform = "translateX(-100%)";
+    document.querySelector(".right-door").style.transform = "translateX(100%)";
+
+    // OM लगेच
+    document.querySelector(".om-symbol").classList.add("show");
+
+    // Music Start
+    bgMusic.volume = 0.3;
+    bgMusic.play().catch(()=>{});
+
+    // 15 sec नंतर Shankh बंद
+    setTimeout(() => {
 
         shankh.pause();
         shankh.currentTime = 0;
 
-        // STEP 3: door open FIRST
-        const leftDoor = document.querySelector(".left-door");
-        const rightDoor = document.querySelector(".right-door");
+        // Screen Fade
+        screen.style.opacity = "0";
 
-        leftDoor.style.transform = "translateX(-100%)";
-        rightDoor.style.transform = "translateX(100%)";
-
-        // STEP 4: OM AFTER DOOR OPEN
+        // 15 sec नंतर Welcome Screen Hide
         setTimeout(() => {
+            screen.style.display = "none";
+        }, 15000);
 
-          document.querySelector(".om-symbol").classList.add("show");
+    }, 15000);
 
-          // STEP 5: bg music
-          bgMusic.volume = 0.3;
-          bgMusic.play().catch(()=>{});
-
-          // STEP 6: screen fade
-          setTimeout(() => {
-            screen.style.opacity = "0";
-
-            setTimeout(() => {
-              screen.style.display = "none";
-            }, 15000);
-
-          }, 3500);
-
-        }, 3500);
-
-      }, 3000);
-
-    };
-  }
+};
 
   // ⭐ IMPORTANT: event must be OUTSIDE everything
   btn.addEventListener("click", startIntro);
