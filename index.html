@@ -1238,86 +1238,69 @@ window.addEventListener("load", () => {
     if (started) return;
     started = true;
 
+    console.log("CLICK WORKING"); // debug
+
     btn.style.display = "none";
 
-    // 1) Voice start
+    // STEP 1: welcome voice
     welcomeVoice.play().catch(()=>{});
-      function startIntro() {
 
-  if (started) return;
-  started = true;
-
-  btn.style.display = "none";
-
-  welcomeVoice.play().catch(()=>{});
-
-  welcomeVoice.onended = () => {
-
-    // 👉 HERE YOUR NEW CODE PASTE
-
-    shankh.currentTime = 0;
-    shankh.play().catch(()=>{});
-
-    document.querySelector(".left-door").style.transform = "translateX(-100%)";
-    document.querySelector(".right-door").style.transform = "translateX(100%)";
-
-    setTimeout(() => {
-      document.querySelector(".om-symbol").classList.add("show");
-    }, 800);
-
-    bgMusic.volume = 0.3;
-    bgMusic.play().catch(()=>{});
-
-    setTimeout(() => {
-      screen.style.opacity = "0";
-      setTimeout(() => {
-        screen.style.display = "none";
-      }, 2000);
-    }, 2000);
-
-  };
-
-}
-
-  btn.addEventListener("click", startIntro);
     welcomeVoice.onended = () => {
 
-  // 1) shankh start
-  shankh.currentTime = 0;
-  shankh.play().catch(()=>{});
+      // STEP 2: shankh short
+      shankh.currentTime = 0;
+      shankh.play().catch(()=>{});
 
-  // 2) DOOR OPEN IMMEDIATELY WITH SHANKH (SYNC)
-  document.querySelector(".left-door").style.transform = "translateX(-100%)";
-  document.querySelector(".right-door").style.transform = "translateX(100%)";
+      setTimeout(() => {
 
-  // 3) OM AFTER SMALL DELAY (optional)
-  setTimeout(() => {
-    document.querySelector(".om-symbol").classList.add("show");
-  }, 800);
+        shankh.pause();
+        shankh.currentTime = 0;
 
-  // 4) BG MUSIC
-  bgMusic.volume = 0.3;
-  bgMusic.play().catch(()=>{});
+        // STEP 3: door open FIRST
+        const leftDoor = document.querySelector(".left-door");
+        const rightDoor = document.querySelector(".right-door");
 
-  // 5) SCREEN HIDE
-  setTimeout(() => {
-    screen.style.opacity = "0";
-    setTimeout(() => {
-      screen.style.display = "none";
-    }, 2000);
-  }, 2000);
+        leftDoor.style.transform = "translateX(-100%)";
+        rightDoor.style.transform = "translateX(100%)";
 
-};
+        // STEP 4: OM AFTER DOOR OPEN
+        setTimeout(() => {
 
-  // guest name
-  const params = new URLSearchParams(window.location.search);
-  const guest = params.get("guest");
+          document.querySelector(".om-symbol").classList.add("show");
 
-  if (guest) {
-    document.getElementById("guestName").innerHTML = "💌 " + guest + " 💌";
+          // STEP 5: bg music
+          bgMusic.volume = 0.3;
+          bgMusic.play().catch(()=>{});
+
+          // STEP 6: screen fade
+          setTimeout(() => {
+            screen.style.opacity = "0";
+
+            setTimeout(() => {
+              screen.style.display = "none";
+            }, 2000);
+
+          }, 1500);
+
+        }, 3500);
+
+      }, 3000);
+
+    };
   }
 
+  // ⭐ IMPORTANT: event must be OUTSIDE everything
+  btn.addEventListener("click", startIntro);
+
 });
+        const params = new URLSearchParams(window.location.search);
+const guest = params.get("guest");
+
+if(guest){
+    document.getElementById("guestName").innerHTML =
+    "💌 " + guest + " 💌";
+}
+
     </script>
 </body>
 </html>
