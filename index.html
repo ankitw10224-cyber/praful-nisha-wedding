@@ -1261,17 +1261,17 @@ welcomeVoice.onended = () => {
     
     }, 1000);
 
-   setTimeout(() => {
+   shankh.onended = () => {
 
-  screen.style.opacity = "0";
+    bgMusic.volume = 0.3;
+    bgMusic.play().catch(err => console.log(err));
 
-  setTimeout(() => {
-    screen.style.display = "none";
-  }, 2000);
+    screen.style.opacity = "0";
 
-}, 7000);
-      
-    }
+    setTimeout(() => {
+        screen.style.display = "none";
+    }, 2000);
+};
   // only button click
   btn.addEventListener("click", startIntro);
 
