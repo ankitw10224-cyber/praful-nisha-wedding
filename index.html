@@ -1244,40 +1244,48 @@ window.addEventListener("load", () => {
     // 1️⃣ Welcome voice start
     welcomeVoice.play().catch(err => console.log(err));
 
-    welcomeVoice.onended = () => {
+welcomeVoice.onended = () => {
 
-      // 2️⃣ Shankh start
-      shankh.currentTime = 0;
-      shankh.play().catch(err => console.log(err));
+    // 🔥 START HERE
+    shankh.currentTime = 0;
+    shankh.volume = 1;
+    shankh.play().catch(err => console.log(err));
 
-      // ⏱️ SHANKH LENGTH CONTROL (CHANGE HERE)
-      setTimeout(() => {
+    setTimeout(() => {
 
-        shankh.pause();
-        shankh.currentTime = 0;
+        const om = document.querySelector(".om-symbol");
+        om.classList.add("show");
 
-        // 3️⃣ Open doors + OM reveal
-        document.querySelector(".om-symbol").classList.add("show");
+        let fade = setInterval(() => {
 
-        document.querySelector(".left-door").style.transform = "translateX(-100%)";
-        document.querySelector(".right-door").style.transform = "translateX(100%)";
-        document.querySelector(".door-light").style.width = "350px";
+            if (shankh.volume > 0.05) {
+                shankh.volume -= 0.03;
+            } else {
+                clearInterval(fade);
+                shankh.pause();
+                shankh.currentTime = 0;
 
-        // 4️⃣ background music start
-        bgMusic.volume = 0.3;
-        bgMusic.play().catch(err => console.log(err));
+                document.querySelector(".left-door").style.transform = "translateX(-100%)";
+                document.querySelector(".right-door").style.transform = "translateX(100%)";
+                document.querySelector(".door-light").style.width = "350px";
 
-        // 5️⃣ hide welcome screen
-        screen.style.opacity = "0";
+                const bgMusic = document.getElementById("bgMusic");
+                const screen = document.getElementById("welcomeScreen");
 
-        setTimeout(() => {
-          screen.style.display = "none";
-        }, 2000);
+                bgMusic.volume = 0.3;
+                bgMusic.play().catch(err => console.log(err));
 
-      }, 1600); // ⭐ SHANKH LENGTH (1.6 sec BEST)
+                screen.style.opacity = "0";
 
-    };
-  }
+                setTimeout(() => {
+                    screen.style.display = "none";
+                }, 2000);
+            }
+
+        }, 200);
+
+    }, 15000);
+};
 
   btn.addEventListener("click", startIntro);
 
