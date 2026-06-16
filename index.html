@@ -1238,40 +1238,49 @@ window.addEventListener("load", () => {
 
         btn.style.display = "none";
 
-        // STEP 1 - Welcome Voice
-        welcomeVoice.play().catch(() => {});
+        // Welcome Voice
+        welcomeVoice.play().catch(err =>
+            console.log("welcome error:", err)
+        );
 
         welcomeVoice.onended = () => {
 
-    // Vakratunda Start
-    introSong.currentTime = 0;
-    introSong.play().catch(()=>{});
+            // Vakratunda
+            introSong.currentTime = 0;
+            introSong.play().catch(err =>
+                console.log("intro error:", err)
+            );
 
-    // Door Open
-    document.querySelector(".left-door").style.transform =
-        "translateX(-100%)";
+            // Door Open
+            document.querySelector(".left-door").style.transform =
+                "translateX(-100%)";
 
-    document.querySelector(".right-door").style.transform =
-        "translateX(100%)";
+            document.querySelector(".right-door").style.transform =
+                "translateX(100%)";
 
-    // OM Show
-    document.querySelector(".om-symbol").classList.add("show");
+            // OM Show
+            document.querySelector(".om-symbol").classList.add("show");
 
-    // Song संपल्यावर
-    introSong.onended = () => {
+            // Vakratunda End
+            introSong.onended = () => {
 
-        screen.style.opacity = "0";
+                screen.style.opacity = "0";
 
-        setTimeout(() => {
-            screen.style.display = "none";
+                setTimeout(() => {
+                    screen.style.display = "none";
 
-            bgMusic.volume = 0.3;
-            bgMusic.play().catch(()=>{});
+                    bgMusic.volume = 0.3;
+                    bgMusic.play().catch(err =>
+                        console.log("bg error:", err)
+                    );
 
-        }, 2000);
+                }, 2000);
 
-    };
-};
+            };
+
+        };
+
+    }
 
     btn.addEventListener("click", startIntro);
 
