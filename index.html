@@ -1228,7 +1228,7 @@ window.addEventListener("load", () => {
   const screen = document.getElementById("welcomeScreen");
   const btn = document.getElementById("enterBtn");
 
-  function startIntro() {
+function startIntro() {
     console.log("Intro Started");
 
     btn.style.display = "none";
@@ -1236,38 +1236,37 @@ window.addEventListener("load", () => {
     const bgMusic = document.getElementById("bgMusic");
     const welcomeVoice = document.getElementById("welcomeVoice");
 
+    // Welcome Voice
     welcomeVoice.play().catch(err => console.log(err));
 
     welcomeVoice.onended = () => {
 
-      shankh.play().catch(err => console.log(err));
+        // Voice samplyavar Shankh
+        shankh.play().catch(err => console.log(err));
 
-      setTimeout(() => {
-
-        shankh.pause();
-        shankh.currentTime = 0;
-
+        // Shankh suru jhala ki Om + Doors Open
         document.querySelector(".om-symbol").classList.add("show");
 
-        document.querySelector(".left-door").style.transform = "translateX(-100%)";
-        document.querySelector(".right-door").style.transform = "translateX(100%)";
-        document.querySelector(".door-light").style.width = "350px";
+document.querySelector(".left-door").style.transform = "translateX(-100%)";
+document.querySelector(".right-door").style.transform = "translateX(100%)";
+document.querySelector(".door-light").style.width = "350px";
 
-        bgMusic.volume = 0.3;
-        bgMusic.play().catch(err => console.log(err));
+        // Shankh samplyavar Music + Main Website
+        shankh.onended = () => {
 
-        screen.style.opacity = "0";
+            bgMusic.volume = 0.3;
+            bgMusic.play().catch(err => console.log(err));
 
-        setTimeout(() => {
-          screen.style.display = "none";
-        }, 2000);
+            screen.style.opacity = "0";
 
-      }, 2500); // 👉 shankh duration
-
+            setTimeout(() => {
+                screen.style.display = "none";
+            }, 2000);
+        };
     };
-  }
+}
 
-  btn.addEventListener("click", startIntro);
+btn.addEventListener("click", startIntro);
 
 });
         const params = new URLSearchParams(window.location.search);
