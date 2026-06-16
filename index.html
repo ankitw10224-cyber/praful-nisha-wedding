@@ -1239,13 +1239,16 @@ window.addEventListener("load", () => {
         btn.style.display = "none";
 
         // Welcome Voice
-        welcomeVoice.play().catch(() => {});
-
+        welcomeVoice.play().catch(err =>
+    console.log("welcome error:", err)
+);
         welcomeVoice.onended = () => {
 
             // Vakratunda Start
             introSong.currentTime = 0;
-            introSong.play().catch(() => {});
+            introSong.play().catch(err =>
+    console.log("intro error:", err)
+);
 
             // Door Open
             document.querySelector(".left-door").style.transform =
@@ -1266,7 +1269,9 @@ window.addEventListener("load", () => {
                     screen.style.display = "none";
 
                     bgMusic.volume = 0.3;
-                    bgMusic.play().catch(() => {});
+                    bgMusic.play().catch(err =>
+    console.log("bg error:", err)
+);
 
                 }, 2000);
 
