@@ -1238,41 +1238,38 @@ window.addEventListener("load", () => {
     if (started) return;
     started = true;
 
-    console.log("CLICK WORKING"); // debug
-
     btn.style.display = "none";
 
-    // STEP 1: welcome voice
+    // 1) Voice start
     welcomeVoice.play().catch(()=>{});
 
     welcomeVoice.onended = () => {
 
-      // STEP 2: shankh short
+      // 2) SHANKH START (short)
       shankh.currentTime = 0;
       shankh.play().catch(()=>{});
 
+      // 👉 SHORT SHANKH LENGTH CONTROL (CHANGE HERE)
       setTimeout(() => {
 
+        // 3) stop shankh
         shankh.pause();
         shankh.currentTime = 0;
 
-        // STEP 3: door open FIRST
-        const leftDoor = document.querySelector(".left-door");
-        const rightDoor = document.querySelector(".right-door");
+        // 4) DOOR OPEN
+        document.querySelector(".left-door").style.transform = "translateX(-100%)";
+        document.querySelector(".right-door").style.transform = "translateX(100%)";
 
-        leftDoor.style.transform = "translateX(-100%)";
-        rightDoor.style.transform = "translateX(100%)";
-
-        // STEP 4: OM AFTER DOOR OPEN
+        // 5) OM SHOW (after door open)
         setTimeout(() => {
 
           document.querySelector(".om-symbol").classList.add("show");
 
-          // STEP 5: bg music
+          // 6) BG MUSIC
           bgMusic.volume = 0.3;
           bgMusic.play().catch(()=>{});
 
-          // STEP 6: screen fade
+          // 7) SCREEN REMOVE
           setTimeout(() => {
             screen.style.opacity = "0";
 
@@ -1282,25 +1279,24 @@ window.addEventListener("load", () => {
 
           }, 1500);
 
-        }, 3500);
+        }, 1200); // 👈 DOOR OPEN नंतर OM delay
 
-      }, 3000);
+      }, 2500); // 👈 SHANKH LENGTH (short/long इथे control कर)
 
     };
   }
 
-  // ⭐ IMPORTANT: event must be OUTSIDE everything
   btn.addEventListener("click", startIntro);
 
+  // guest name
+  const params = new URLSearchParams(window.location.search);
+  const guest = params.get("guest");
+
+  if (guest) {
+    document.getElementById("guestName").innerHTML = "💌 " + guest + " 💌";
+  }
+
 });
-        const params = new URLSearchParams(window.location.search);
-const guest = params.get("guest");
-
-if(guest){
-    document.getElementById("guestName").innerHTML =
-    "💌 " + guest + " 💌";
-}
-
     </script>
 </body>
 </html>
