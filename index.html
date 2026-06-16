@@ -1236,21 +1236,18 @@ window.addEventListener("load", () => {
 bgMusic.volume = 0.9;
       const welcomeVoice = document.getElementById("welcomeVoice");
 
-    shankh.play().catch(err => console.log("Audio blocked:", err));
+   shankh.play().catch(err => console.log("Audio blocked:", err));
 
-shankh.onended = () => {
-
-    const welcomeVoice = document.getElementById("welcomeVoice");
+setTimeout(() => {
 
     welcomeVoice.play().catch(err => console.log(err));
 
     welcomeVoice.onended = () => {
-
         bgMusic.volume = 0.3;
         bgMusic.play().catch(err => console.log(err));
-
     };
-};
+
+}, 3000);
     setTimeout(() => {
       shankh.pause();
       shankh.currentTime = 0;
