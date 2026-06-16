@@ -1244,27 +1244,27 @@ function startIntro() {
         // Voice samplyavar Shankh
         shankh.play().catch(err => console.log(err));
 
-        // Shankh suru jhala ki Om + Doors Open
-        document.querySelector(".om-symbol").classList.add("show");
+setTimeout(() => {
 
-document.querySelector(".left-door").style.transform = "translateX(-100%)";
-document.querySelector(".right-door").style.transform = "translateX(100%)";
-document.querySelector(".door-light").style.width = "350px";
+    shankh.pause();          // ✅ stop sound
+    shankh.currentTime = 0;  // reset
 
-        // Shankh samplyavar Music + Main Website
-        shankh.onended = () => {
+    document.querySelector(".om-symbol").classList.add("show");
 
-            bgMusic.volume = 0.3;
-            bgMusic.play().catch(err => console.log(err));
+    document.querySelector(".left-door").style.transform = "translateX(-100%)";
+    document.querySelector(".right-door").style.transform = "translateX(100%)";
+    document.querySelector(".door-light").style.width = "350px";
 
-            screen.style.opacity = "0";
+    bgMusic.volume = 0.3;
+    bgMusic.play().catch(err => console.log(err));
 
-            setTimeout(() => {
-                screen.style.display = "none";
-            }, 2000);
-        };
-    };
-}
+    screen.style.opacity = "0";
+
+    setTimeout(() => {
+        screen.style.display = "none";
+    }, 2000);
+
+}, 15000);
 
 btn.addEventListener("click", startIntro);
 
