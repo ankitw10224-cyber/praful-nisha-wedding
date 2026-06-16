@@ -695,10 +695,9 @@ z-index:100001;
 <body>
     
 <div id="welcomeScreen">
-
-    <audio id="shankhSound">
-        <source src="mahabharat-shankh.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="introSong">
+    <source src="Vakratunda.mp3" type="audio/mpeg">
+</audio>
 
     <div class="om-symbol">
         
@@ -1226,7 +1225,7 @@ window.addEventListener("load", () => {
     const btn = document.getElementById("enterBtn");
     const screen = document.getElementById("welcomeScreen");
 
-    const shankh = document.getElementById("shankhSound");
+    const introSong = document.getElementById("introSong");
     const welcomeVoice = document.getElementById("welcomeVoice");
     const bgMusic = document.getElementById("bgMusic");
 
@@ -1239,51 +1238,47 @@ window.addEventListener("load", () => {
 
         btn.style.display = "none";
 
-        // STEP 1 - Welcome Voice
+        // Welcome Voice
         welcomeVoice.play().catch(() => {});
 
         welcomeVoice.onended = () => {
 
-            // STEP 2 - Shankh Start
-            shankh.currentTime = 0;
-            shankh.play().catch(() => {});
+            // Vakratunda Start
+            introSong.currentTime = 0;
+            introSong.play().catch(() => {});
 
-            // STEP 3 - Door Open (Immediately)
+            // Door Open
             document.querySelector(".left-door").style.transform =
                 "translateX(-100%)";
 
             document.querySelector(".right-door").style.transform =
                 "translateX(100%)";
 
-            // STEP 4 - OM Immediately
+            // OM Show
             document.querySelector(".om-symbol").classList.add("show");
 
-            // STEP 5 - Background Music
-            bgMusic.volume = 0.3;
-            bgMusic.play().catch(() => {});
+            // Song संपल्यावर
+            introSong.onended = () => {
 
-            // STEP 6 - After 15 sec
-            setTimeout(() => {
-
-                shankh.pause();
-                shankh.currentTime = 0;
-
-                // Fade Screen
                 screen.style.opacity = "0";
 
-                // Hide after fade
                 setTimeout(() => {
                     screen.style.display = "none";
+
+                    bgMusic.volume = 0.3;
+                    bgMusic.play().catch(() => {});
+
                 }, 2000);
 
-            }, 15000);
+            };
 
         };
-    }
+
+    } // ← startIntro function इथे बंद होतो
 
     btn.addEventListener("click", startIntro);
 
-});
+}); // ← window load इथे बंद होतो
         const params = new URLSearchParams(window.location.search);
 const guest = params.get("guest");
 
