@@ -1235,49 +1235,57 @@ window.addEventListener("load", () => {
 
   function startIntro() {
 
-    if (started) return; // 🔥 prevent double click conflict
+    if (started) return;
     started = true;
 
     btn.style.display = "none";
 
-    // STEP 1: welcome voice
+    // STEP 1: Welcome voice
     welcomeVoice.play().catch(()=>{});
 
     welcomeVoice.onended = () => {
 
-      // STEP 2: SHANKH (SHORT CONTROL)
+      // STEP 2: Shankh (short)
       shankh.currentTime = 0;
-
-      // 🔥 auto stop shankh after 4 sec (SHORT LENGTH FIX)
       shankh.play().catch(()=>{});
 
       setTimeout(() => {
 
+        // STOP SHANKH
         shankh.pause();
         shankh.currentTime = 0;
 
-        // STEP 3: OM SHOW + DOOR OPEN TOGETHER
-        document.querySelector(".om-symbol").classList.add("show");
+        // STEP 3: DOOR OPEN FIRST
+        const leftDoor = document.querySelector(".left-door");
+        const rightDoor = document.querySelector(".right-door");
+        const om = document.querySelector(".om-symbol");
 
-        document.querySelector(".left-door").style.transform = "translateX(-100%)";
-        document.querySelector(".right-door").style.transform = "translateX(100%)";
-        document.querySelector(".door-light").style.width = "350px";
+        leftDoor.style.transform = "translateX(-100%)";
+        rightDoor.style.transform = "translateX(100%)";
 
-        // STEP 4: background music
-        bgMusic.volume = 0.3;
-        bgMusic.play().catch(()=>{});
-
-        // STEP 5: screen fade out AFTER OM starts
+        // WAIT FOR DOOR ANIMATION (IMPORTANT FIX)
         setTimeout(() => {
-          screen.style.opacity = "0";
 
+          // STEP 4: OM SHOW AFTER DOOR OPEN
+          om.classList.add("show");
+
+          // STEP 5: BG MUSIC START
+          bgMusic.volume = 0.3;
+          bgMusic.play().catch(()=>{});
+
+          // STEP 6: SCREEN FADE OUT
           setTimeout(() => {
-            screen.style.display = "none";
-          }, 2000);
+            screen.style.opacity = "0";
 
-        }, 1500);
+            setTimeout(() => {
+              screen.style.display = "none";
+            }, 2000);
 
-      }, 4000); // 👉 SHANKH LENGTH CONTROL (4 sec)
+          }, 1500);
+
+        }, 4000); // door open time wait
+
+      }, 3000); // shankh short duration
 
     };
   }
