@@ -1228,52 +1228,45 @@ window.addEventListener("load", () => {
   const screen = document.getElementById("welcomeScreen");
   const btn = document.getElementById("enterBtn");
 
-  function startIntro() {
+function startIntro() {
     console.log("Intro Started");
 
     btn.style.display = "none";
-      const bgMusic = document.getElementById("bgMusic");
-bgMusic.volume = 0.9;
-      const welcomeVoice = document.getElementById("welcomeVoice");
 
-   welcomeVoice.play().catch(err => console.log(err));
+    const bgMusic = document.getElementById("bgMusic");
+    const welcomeVoice = document.getElementById("welcomeVoice");
 
-welcomeVoice.onended = () => {
+    // Welcome Voice
+    welcomeVoice.play().catch(err => console.log(err));
 
-    shankh.play().catch(err => console.log(err));
+    welcomeVoice.onended = () => {
 
-    shankh.onended = () => {
+        // Voice samplyavar Shankh
+        shankh.play().catch(err => console.log(err));
 
-        bgMusic.volume = 0.3;
-        bgMusic.play().catch(err => console.log(err));
+        // Shankh suru jhala ki Om + Doors Open
+        document.querySelector(".om-symbol").classList.add("show");
 
+document.querySelector(".left-door").style.transform = "translateX(-100%)";
+document.querySelector(".right-door").style.transform = "translateX(100%)";
+document.querySelector(".door-light").style.width = "350px";
+
+        // Shankh samplyavar Music + Main Website
+        shankh.onended = () => {
+
+            bgMusic.volume = 0.3;
+            bgMusic.play().catch(err => console.log(err));
+
+            screen.style.opacity = "0";
+
+            setTimeout(() => {
+                screen.style.display = "none";
+            }, 2000);
+        };
     };
+}
 
-};
-    setTimeout(() => {
-      document.querySelector(".om-symbol").classList.add("show");
-    }, 1500);
-
-    setTimeout(() => {
-      document.querySelector(".left-door").style.transform = "translateX(-100%)";
-      document.querySelector(".right-door").style.transform = "translateX(100%)";
-      document.querySelector(".door-light").style.width = "350px";
-    
-    }, 1000);
-
-   shankh.onended = () => {
-
-    bgMusic.volume = 0.3;
-    bgMusic.play().catch(err => console.log(err));
-
-    screen.style.opacity = "0";
-
-    setTimeout(() => {
-        screen.style.display = "none";
-    }, 2000);
-};
-  // only button click
-  btn.addEventListener("click", startIntro);
+btn.addEventListener("click", startIntro);
 
 });
         const params = new URLSearchParams(window.location.search);
