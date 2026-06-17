@@ -1345,14 +1345,17 @@ window.addEventListener("load", () => {
 
     btn.addEventListener("click", startIntro);
 
-});
-        const params = new URLSearchParams(window.location.search);
-const guest = params.get("guest");
+    const params = new URLSearchParams(window.location.search);
+    let guest = params.get("guest");
 
-if(guest){
-    document.getElementById("guestName").innerHTML =
-    "💌 " + guest + " 💌";
-}
+    if (guest) {
+        guest = decodeURIComponent(guest);
+
+        document.getElementById("guestName").innerHTML =
+            "💌 " + guest + " 💌";
+    }
+
+});
 
     </script>
 </body>
