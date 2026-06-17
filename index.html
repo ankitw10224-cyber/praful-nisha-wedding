@@ -696,6 +696,22 @@ z-index:100001;
                 padding: 60px 5%;
             }
         }
+        .scroll-down{
+    position:absolute;
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#ffd700;
+    font-size:16px;
+    font-weight:bold;
+    animation:bounce 1.5s infinite;
+    text-align:center;
+}
+
+@keyframes bounce{
+    0%,100%{ transform:translate(-50%,0); }
+    50%{ transform:translate(-50%,10px); }
+}
     </style>
 </head>
 <body>
@@ -733,6 +749,11 @@ z-index:100001;
     <button id="enterBtn" class="enter-btn">
         🕉️ प्रवेश करण्यासाठी येथे क्लिक करा
     </button>
+    <div class="scroll-down">
+
+    ⬇ Scroll Down
+
+</div>
 
 </div>
     
