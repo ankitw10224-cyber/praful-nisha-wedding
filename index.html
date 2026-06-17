@@ -426,11 +426,17 @@ z-index:100001;
     text-align:center;
     margin-bottom:15px;
     text-shadow:0 0 15px gold;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90vw;
 }
 
 @media(max-width:768px){
     #guestName{
         font-size:1.2rem;
+        max-width: 95vw;
     }
 }
 
