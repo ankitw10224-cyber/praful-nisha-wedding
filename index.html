@@ -772,6 +772,71 @@ z-index:100001;
         padding: 12px 20px;
     }
 }
+
+        /* ===== ROYAL PALACE GOLDEN LOCK ===== */
+
+.royal-lock {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100003;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    filter: drop-shadow(0 0 12px gold);
+    transition: opacity .5s ease;
+}
+
+.lock-shackle {
+    width: 42px;
+    height: 45px;
+    border: 7px solid #ffd700;
+    border-bottom: none;
+    border-radius: 25px 25px 0 0;
+    position: relative;
+    top: 5px;
+    transform-origin: 85% 85%;
+}
+
+.lock-body {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg,#fff2a0,#d4af37,#8b6508);
+    border: 3px solid #fff0a0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 12px #fff5b0;
+}
+
+.lock-body span {
+    color: #713d00;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.royal-lock.unlock .lock-shackle {
+    animation: royalUnlock .8s ease forwards;
+}
+
+.royal-lock.unlock {
+    animation: lockDisappear .7s ease 0.8s forwards;
+}
+
+@keyframes royalUnlock {
+    to {
+        transform: rotate(65deg) translateY(-5px);
+    }
+}
+
+@keyframes lockDisappear {
+    to {
+        opacity: 0;
+        transform: translate(-50%,-70%) scale(.5);
+    }
+}
     </style>
 </head>
 <body>
@@ -805,6 +870,13 @@ z-index:100001;
     </div>
 
     <div class="door-light"></div>
+
+    <div class="royal-lock" id="royalLock">
+    <div class="lock-shackle"></div>
+    <div class="lock-body">
+        <span>ॐ</span>
+    </div>
+</div>
     
     <button id="enterBtn" class="enter-btn">
         🕉️ प्रवेश करण्यासाठी येथे क्लिक करा
@@ -1336,6 +1408,7 @@ window.addEventListener("load", () => {
         started = true;
 
         btn.style.display = "none";
+
 
            // Mobile Audio Unlock
     bgMusic.volume = 0;
