@@ -710,6 +710,68 @@ z-index:100001;
     0%,100%{ transform:translateY(0); }
     50%{ transform:translateY(10px); }
 }
+
+        /* ===== PROFESSIONAL WELCOME SCREEN SPACING ===== */
+
+.left-door,
+.right-door {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.door-content {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parents-photo {
+    display: block;
+    flex-shrink: 0;
+    margin: 0 auto;
+}
+
+/* Entry Button Alignment */
+
+.enter-btn {
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%);
+    white-space: normal;
+    text-align: center;
+    line-height: 1.5;
+    max-width: calc(100% - 32px);
+}
+
+/* Mobile Spacing */
+
+@media (max-width: 768px) {
+
+    .left-door,
+    .right-door {
+        padding: 0;
+    }
+
+    .door-content {
+        width: 100%;
+        padding: 0;
+    }
+
+    .parents-photo {
+        margin: 0 auto;
+    }
+
+    .enter-btn {
+        bottom: 25px;
+        max-width: calc(100% - 40px);
+        padding: 12px 20px;
+    }
+}
     </style>
 </head>
 <body>
